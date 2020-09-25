@@ -1,0 +1,34 @@
+{
+  "compilerOptions": {
+    "lib": ["es5", "es6", "dom", "es2017"],
+    "sourceMap": true,
+    "target": "es6",
+    "jsx": "react",
+    "baseUrl": "./src",
+    "moduleResolution": "node",
+    "strict": true,
+    "typeRoots": [
+      "./node_modules/@types"
+    ],
+    "esModuleInterop": true,
+    "resolveJsonModule": true,
+    "importsNotUsedAsValues": "preserve",
+    "noEmit": false,
+    "skipLibCheck": true,
+    "noUnusedLocals": true,
+    "noEmitOnError": false,
+//    "paths": {
+//      "redux/*": ["./redux/*"]
+//    },
+    "traceResolution": false
+//    "rootDirs": ["./src/redux"]
+//    "paths": {
+//      "redux/*": ["./redux/*"]
+//    }
+  },
+  "include": [
+    "./src/**/*"
+  ],
+  "exclude": ["dist", "build", "node_modules"]
+}
+
