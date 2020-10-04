@@ -12,6 +12,7 @@ export default function configureAppStore(preloadedState = {}) {
 
   if (process.env.NODE_ENV === 'development' && module.hot) {
     module.hot.accept('../slices', () => {
+      // eslint-disable-next-line global-require
       const newRootReducer = require('../slices').default;
       store.replaceReducer(newRootReducer);
     });

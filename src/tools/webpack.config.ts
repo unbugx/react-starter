@@ -1,21 +1,14 @@
 import path from 'path';
-// import webpack, { Configuration } from 'webpack';
-// import nodeExternals from 'webpack-node-externals';
-// import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin';
-import ForkTsCheckerWebpackPlugin from 'fork-ts-checker-webpack-plugin';
-// import HtmlWebpackPlugin from 'html-webpack-plugin';
+import ESLintPlugin from 'eslint-webpack-plugin';
 
 const nodeEnv = process.env.NODE_ENV || 'development';
 const isProduction = nodeEnv === 'production';
 const isDev = nodeEnv === 'development';
 const mode = isDev ? 'development' : 'production';
-// const isVerbose = false;
 
 const plugins = [
-  new ForkTsCheckerWebpackPlugin({
-    typescript: {
-      configFile: path.resolve(__dirname, '../../tsconfig.json'),
-    },
+  new ESLintPlugin({
+    extensions: ['.ts', 'tsx'],
   }),
 ];
 
@@ -58,34 +51,11 @@ const config: any = {
       },
       {
         test: /\.tsx?$/,
-        enforce: 'pre',
-        exclude: /node_modules/,
-        include: [path.resolve(__dirname, '../../src')],
-        use: [
-          {
-            loader: 'tslint-loader',
-            options: {
-              configFile: path.resolve(__dirname, '../../tslint.json'),
-              tsConfigFile: path.resolve(__dirname, '../../tsconfig.json'),
-              failOnHint: false,
-              emitErrors: true,
-            },
-          },
-        ],
-      },
-      {
-        test: /\.tsx?$/,
         exclude: /node_modules/,
         include: [path.resolve(__dirname, '../../src')],
         use: [
           'cache-loader',
-          {
-            loader: 'ts-loader',
-            options: {
-              transpileOnly: true,
-              configFile: path.resolve(__dirname, '../../tsconfig.json'),
-            },
-          },
+          'babel-loader',
         ],
       },
     ],
@@ -96,7 +66,7 @@ const config: any = {
     // reasons: isDev,
     // hash: isVerbose,
     // version: isVerbose,
-    // timings: true,
+    timings: true,
     // chunks: isVerbose,
     // chunkModules: isVerbose,
     // cached: isVerbose,
@@ -106,6 +76,7 @@ const config: any = {
 
 const clientConfig: any = {
   ...config,
+  name: 'client',
   devtool: !isProduction ? '#source-map' : false,
   entry: {
     client: path.resolve(__dirname, '../../src/client.ts'),
@@ -120,6 +91,7 @@ const clientConfig: any = {
 
 const serverConfig = {
   ...config,
+  name: 'server',
   devtool: !isProduction ? 'cheap-module-source-map' : false,
   entry: {
     server: path.resolve(__dirname, '../../src/server.ts'),
@@ -134,7 +106,6 @@ const serverConfig = {
   target: 'node',
   externals: [
     'express',
-    // /^\.\/inlinedRuntime\.html$/,
   ],
   node: {
     console: false,

@@ -1,11 +1,15 @@
 import React from 'react';
 import { render } from 'react-dom';
-import configureStore from 'redux/store/configureStore';
+import { Provider } from 'react-redux';
+
+// styles
 import './global.css';
+
+// store
+import configureStore from 'redux/store/configureStore';
 
 // components
 import { Layout } from 'components/Layout/Layout';
-import { Provider } from 'react-redux';
 
 const element = document && document.getElementById('app');
 

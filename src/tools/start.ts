@@ -1,67 +1,88 @@
-import webpack from 'webpack';
+/* eslint-disable no-console */
+// libs
+import path from 'path';
+import express, { Express } from 'express';
+import proxy from 'express-http-proxy';
+import webpack, { Compiler } from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
-import WriteFilePlugin from 'write-file-webpack-plugin';
 import webpackConfig from './webpack.config';
 import runServer from './runServer';
 
-const nodeEnv = process.env.NODE_ENV || 'development';
-const isDev = nodeEnv === 'development';
+// constants
+import { PORT } from 'constants/index';
+
+// const nodeEnv = process.env.NODE_ENV || 'development';
+// const isDev = nodeEnv === 'development';
 
 const [clientConfig] = webpackConfig;
 
-async function start() {
+const watchOptions = {
+  aggregateTimeout: 200,
+  poll: 1000,
+};
+
+let server: Express;
+
+async function compilerPromise(compiler: Compiler, cb?: () => Promise<unknown>) {
   await new Promise((resolve) => {
-    // Save the server-side bundle on after compilation
-    // https://github.com/webpack/webpack-dev-server/issues/62
-    webpackConfig.find(x => x.target === 'node').plugins.push(new WriteFilePlugin({ log: false }));
-
-    // Hot Module Replacement (HMR) + React Hot Reload
-    if (isDev) {
-      // tslint:disable-next-line:max-line-length
-      // clientConfig.entry.client = ['react-hot-loader/patch', 'webpack-hot-middleware/client'].concat(clientConfig.entry.client);
-      // config.output.filename = config.output.filename.replace('[chunkhash', '[hash')
-      // config.output.chunkFilename = config.output.chunkFilename.replace('[chunkhash', '[hash')
-
-      // config.plugins.push(new webpack.HotModuleReplacementPlugin())
-      // config.plugins.push(new webpack.NoEmitOnErrorsPlugin())
-    }
-
-    const compiler = webpack(webpackConfig);
-
-    /*compiler.run((err, stats) => { // Stats Object
-      if (err) {
-        console.error(err);
-        return;
+    const handleBundleComplete = async () => {
+      if (cb) {
+        await cb();
       }
-
-      console.log(stats.toString({
-        chunks: false,  // Makes the build much quieter
-        colors: true,    // Shows colors in the console
-      }));
-    });*/
-
-    webpackDevMiddleware(compiler, {
-      // IMPORTANT: webpack middleware can't access config,
-      // so we should provide publicPath by ourselves
-      publicPath: clientConfig.output.publicPath,
-
-      // Pretty colored output
-      stats: clientConfig.stats,
-      // stats: 'normal',
-
-      // Write extra assets to disk
-      writeToDisk: filePath => /inlinedRuntime|client/.test(filePath),
-
-      // For other settings see
-      // https://webpack.github.io/docs/webpack-dev-middleware
-    });
-
-    const handleBundleComplete = async (stats: any, a: any) => {
-      await runServer();
       resolve();
     };
 
-    compiler.hooks.done.tap('doneTapPlugin', handleBundleComplete);
+    compiler.hooks.done.tap(compiler.name, handleBundleComplete);
+  });
+}
+
+async function start() {
+  if (server) return server;
+
+  server = express();
+  server.use(express.static(path.resolve(__dirname, 'public')));
+
+  const multiCompiler = webpack(webpackConfig);
+
+  const clientCompiler = multiCompiler.compilers.find((compiler) => compiler.name === 'client') as Compiler;
+  const serverCompiler = multiCompiler.compilers.find((compiler) => compiler.name === 'server') as Compiler;
+
+  const clientPromise = compilerPromise(clientCompiler);
+  const serverPromise = compilerPromise(serverCompiler, runServer);
+
+  server.use(
+    webpackDevMiddleware(clientCompiler, {
+      publicPath: clientConfig.output.publicPath,
+      stats: clientConfig.stats,
+    }),
+  );
+
+  serverCompiler.watch(watchOptions, (error, stats) => {
+    if (error) {
+      console.error('Compile error:', error);
+      return;
+    }
+
+    console.log(stats.toString({
+      chunks: false,
+      colors: true,
+    }));
+  });
+
+  await clientPromise;
+  await serverPromise;
+
+  server.use('*', (req: any, res: any, next: any) => {
+    const requestedUrl = `${req.protocol}://${req.get('Host')}:${PORT}${req.url}`;
+    proxy(requestedUrl)(req, res, next);
+  });
+
+  server.use(() => {
+    console.log('handle error here');
+  });
+
+  server.listen(PORT + 1, () => {
+    console.log(`The server is running at http://localhost:${PORT + 1}/`);
   });
 }
 

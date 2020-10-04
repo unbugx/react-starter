@@ -15,10 +15,9 @@ export const Counter: FC<ICounterProps> = () => {
     <div>
       Counter: <b>{counter}</b>
       <div>
-        <button onClick={() => dispatch(increase())}>+1</button>
-        {/*<button onClick={() => increase(1)}>+1</button>*/}
-        <button>-1</button>
-        <button>reset</button>
+        <button type='button' onClick={() => dispatch(increase())}>+1</button>
+        <button type='button'>-1</button>
+        <button type='button'>reset</button>
       </div>
     </div>
   );

@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import React, { FC } from 'react';
 import serialize from 'serialize-javascript';
 
@@ -10,28 +11,26 @@ export const Html: FC<IHtmlProps> = ({
   description,
   state,
   style,
-}) => {
-  return (
-    <html>
-      <head>
-        <meta charSet='utf-8' />
-        <meta httpEquiv='x-ua-compatible' content='ie=edge' />
-        <title>{title}</title>
-        <meta name='description' content={description} />
-        <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1' />
-        {style && <style id='css' dangerouslySetInnerHTML={{ __html: style }} />}
-      </head>
-      <body>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.APP_STATE=${serialize(state, { isJSON: true })};
-            `,
-          }}
-        />
-        <div id='app' dangerouslySetInnerHTML={{ __html: children }} />
-        <script src='/client.bundle.js' />
-      </body>
-    </html>
-  );
-};
+}) => (
+  <html lang='en'>
+    <head>
+      <meta charSet='utf-8' />
+      <meta httpEquiv='x-ua-compatible' content='ie=edge' />
+      <title>{title}</title>
+      <meta name='description' content={description} />
+      <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1' />
+      {style && <style id='css' dangerouslySetInnerHTML={{ __html: style }} />}
+    </head>
+    <body>
+      <script
+        dangerouslySetInnerHTML={{
+          __html: `
+            window.APP_STATE=${serialize(state, { isJSON: true })};
+          `,
+        }}
+      />
+      <div id='app' dangerouslySetInnerHTML={{ __html: children }} />
+      <script src='/client.bundle.js' />
+    </body>
+  </html>
+);

@@ -1,12 +1,16 @@
 import React from 'react';
 import ReactDOM from 'react-dom/server';
-import { NextFunction, Request, Response } from 'express';
+import { Request, Response } from 'express';
+
+// components
 import { Html } from 'components/Html/Html';
 import { IHtmlProps } from 'components/Html/types';
 import { App } from 'components/App/App';
+
+// store
 import configureStore from 'redux/store/configureStore';
 
-export default function handleServerRendering(req: Request, res: Response, next: NextFunction) {
+export default function handleServerRendering(req: Request, res: Response) {
   const store = configureStore();
 
   // CSS for all rendered React components

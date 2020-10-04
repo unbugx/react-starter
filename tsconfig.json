@@ -8,23 +8,18 @@
     "moduleResolution": "node",
     "strict": true,
     "typeRoots": [
-      "./node_modules/@types"
+      "types",
+      "node_modules/@types"
     ],
     "esModuleInterop": true,
     "resolveJsonModule": true,
     "importsNotUsedAsValues": "preserve",
-    "noEmit": false,
+    "noEmit": true,
     "skipLibCheck": true,
     "noUnusedLocals": true,
     "noEmitOnError": false,
-//    "paths": {
-//      "redux/*": ["./redux/*"]
-//    },
+    "noImplicitAny": true,
     "traceResolution": false
-//    "rootDirs": ["./src/redux"]
-//    "paths": {
-//      "redux/*": ["./redux/*"]
-//    }
   },
   "include": [
     "./src/**/*"

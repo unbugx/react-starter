@@ -23,7 +23,7 @@ async function runServer() {
 
       if (match) {
         server.stdout?.removeListener('data', onStdOut);
-        server.stdout?.on('data', x => process.stdout.write(x));
+        server.stdout?.on('data', (x) => process.stdout.write(x));
         pending = false;
         resolve(server);
       }
@@ -37,7 +37,7 @@ async function runServer() {
 
     server.stdout?.on('data', onStdOut);
 
-    server.stderr?.on('data', x => process.stderr.write(x));
+    server.stderr?.on('data', (x) => process.stderr.write(x));
 
     if (pending) {
       server.once('exit', (code, signal) => {

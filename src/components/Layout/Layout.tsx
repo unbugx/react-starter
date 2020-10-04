@@ -1,5 +1,4 @@
 import React, { FC } from 'react';
-// @ts-ignore
 import useStyles from 'isomorphic-style-loader/useStyles';
 import { Layout as LayoutUI, Menu, Breadcrumb } from 'antd';
 
