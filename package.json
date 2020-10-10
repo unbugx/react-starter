@@ -43,6 +43,7 @@
     "@types/react-redux": "7.1.9",
     "@types/webpack-dev-middleware": "3.7.2",
     "@types/webpack-env": "1.15.2",
+    "@types/webpack-hot-middleware": "2.25.3",
     "@types/webpack-node-externals": "2.5.0",
     "@types/write-file-webpack-plugin": "4.5.0",
     "@typescript-eslint/parser": "4.3.0",
@@ -87,6 +88,7 @@
     "webpack-cli": "3.3.12",
     "webpack-dev-middleware": "3.7.2",
     "webpack-dev-server": "3.11.0",
+    "webpack-hot-middleware": "2.25.0",
     "webpack-node-externals": "2.5.2",
     "write-file-webpack-plugin": "4.5.1"
   }

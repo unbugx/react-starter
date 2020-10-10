@@ -1,5 +1,6 @@
 import path from 'path';
 import ESLintPlugin from 'eslint-webpack-plugin';
+import webpack from 'webpack';
 
 const nodeEnv = process.env.NODE_ENV || 'development';
 const isProduction = nodeEnv === 'production';
@@ -79,14 +80,17 @@ const clientConfig: any = {
   name: 'client',
   devtool: !isProduction ? '#source-map' : false,
   entry: {
-    client: path.resolve(__dirname, '../../src/client.ts'),
+    client: [path.resolve(__dirname, '../../src/client.ts')],
   },
   output: {
     path: path.resolve(__dirname, '../../build/public'),
     publicPath: '/',
     filename: '[name].bundle.js',
   },
-  plugins: [...plugins],
+  plugins: [
+    ...plugins,
+    new webpack.HotModuleReplacementPlugin(),
+  ],
 };
 
 const serverConfig = {

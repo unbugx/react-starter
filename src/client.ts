@@ -5,14 +5,12 @@ import ReactDOM from 'react-dom';
 import { App } from 'components/App/App';
 
 // store
-import configureStore from 'redux/store/configureStore';
+import store from 'redux/store/clientStore';
 
 // styles
 import './global.css';
 
 const container = document.getElementById('app');
-
-const store = configureStore(window.APP_STATE);
 
 const insertCss = (...styles: any) => {
   const removeCss = styles.map((style: any) => style._insertCss());
@@ -24,3 +22,9 @@ function main() {
 }
 
 main();
+
+// check if HMR is enabled
+if (module.hot) {
+  // accept itself
+  module.hot.accept();
+}

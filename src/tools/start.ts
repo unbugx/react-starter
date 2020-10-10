@@ -5,6 +5,7 @@ import express, { Express } from 'express';
 import proxy from 'express-http-proxy';
 import webpack, { Compiler } from 'webpack';
 import webpackDevMiddleware from 'webpack-dev-middleware';
+import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from './webpack.config';
 import runServer from './runServer';
 
@@ -13,8 +14,6 @@ import { PORT } from 'constants/index';
 
 // const nodeEnv = process.env.NODE_ENV || 'development';
 // const isDev = nodeEnv === 'development';
-
-const [clientConfig] = webpackConfig;
 
 const watchOptions = {
   aggregateTimeout: 200,
@@ -42,6 +41,9 @@ async function start() {
   server = express();
   server.use(express.static(path.resolve(__dirname, 'public')));
 
+  const clientConfig = webpackConfig.find((config) => config.name === 'client');
+  clientConfig.entry.client = ['webpack-hot-middleware/client'].concat(clientConfig.entry.client);
+
   const multiCompiler = webpack(webpackConfig);
 
   const clientCompiler = multiCompiler.compilers.find((compiler) => compiler.name === 'client') as Compiler;
@@ -56,6 +58,8 @@ async function start() {
       stats: clientConfig.stats,
     }),
   );
+
+  server.use(webpackHotMiddleware(clientCompiler));
 
   serverCompiler.watch(watchOptions, (error, stats) => {
     if (error) {
