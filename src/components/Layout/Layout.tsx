@@ -14,7 +14,7 @@ import g from '../../global.css';
 
 const { Header, Content, Footer } = LayoutUI;
 
-export const Layout: FC<ILayoutProps> = () => {
+export const Layout: FC<ILayoutProps> = ({ children }) => {
   useStyles(s);
   useStyles(g);
 
@@ -34,6 +34,9 @@ export const Layout: FC<ILayoutProps> = () => {
           <Breadcrumb.Item>App</Breadcrumb.Item>
         </Breadcrumb>
         <div className={s.siteLayoutContent}>
+          <div>
+            {children}
+          </div>
           Content:
           <Counter />
         </div>

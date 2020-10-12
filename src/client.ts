@@ -1,11 +1,12 @@
 import * as React from 'react';
 import ReactDOM from 'react-dom';
+import UniversalRouter from 'universal-router';
+import store from 'redux/store/clientStore';
+import history from 'core/history';
+import routes from 'routes';
 
 // components
 import { App } from 'components/App/App';
-
-// store
-import store from 'redux/store/clientStore';
 
 // styles
 import './global.css';
@@ -17,8 +18,23 @@ const insertCss = (...styles: any) => {
   return () => removeCss.forEach((dispose: any) => dispose());
 };
 
+const router = new UniversalRouter(routes);
+
+async function render(location: Location) {
+  const routeComponent = await router.resolve(location);
+  ReactDOM.hydrate(React.createElement(App, { store, insertCss }, routeComponent), container);
+}
+
 function main() {
-  ReactDOM.hydrate(React.createElement(App, { store, insertCss }), container);
+  if (!history) {
+    return;
+  }
+
+  // Listening for the history changes to the current location
+  history.listen(render);
+
+  // Initial Rendering for the initial location
+  render(history.location);
 }
 
 main();

@@ -90,6 +90,9 @@ const clientConfig: any = {
   plugins: [
     ...plugins,
     new webpack.HotModuleReplacementPlugin(),
+    new webpack.DefinePlugin({
+      'process.env.BROWSER': true,
+    }),
   ],
 };
 
@@ -106,7 +109,12 @@ const serverConfig = {
     filename: 'server.js',
     libraryTarget: 'commonjs2',
   },
-  plugins: [...plugins],
+  plugins: [
+    ...plugins,
+    new webpack.DefinePlugin({
+      'process.env.BROWSER': false,
+    }),
+  ],
   target: 'node',
   externals: [
     'express',
