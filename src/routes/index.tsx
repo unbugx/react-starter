@@ -1,8 +1,12 @@
 import { Route, RouteContext } from 'universal-router';
 import home from './home';
+import contacts from './contacts';
+import notFound from './notFound';
 
 const routes = [
   { ...home },
+  { ...contacts },
+  { ...notFound },
 ];
 
 const rootRoute: Route = {
@@ -15,7 +19,9 @@ const rootRoute: Route = {
 
     // Do action when navigation ends
 
-    return children;
+    return {
+      component: children,
+    };
   },
 };
 

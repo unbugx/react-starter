@@ -1,19 +1,16 @@
 import React from 'react';
 import { Layout } from 'components/Layout/Layout';
-import { Counter } from 'components/Counter/Counter';
 import { ROUTE } from 'constants/routes';
 
 export default {
-  path: '/',
+  path: '(.*)',
   action: () => ({
-    name: ROUTE.HOME,
+    name: ROUTE.NOT_FOUND,
     component: (
       <Layout>
-        Home Page
-        <div>
-          <Counter />
-        </div>
+        404 Page
       </Layout>
     ),
+    status: 404,
   }),
 };

@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/server';
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import UniversalRouter from 'universal-router';
 import routes from 'routes';
 
@@ -14,25 +14,29 @@ import configureStore from 'redux/store/configureStore';
 
 const router = new UniversalRouter(routes);
 
-export default async function handleServerRendering(req: Request, res: Response) {
+export default async function handleServerRendering(req: Request, res: Response, next: NextFunction) {
   const store = configureStore();
 
-  // CSS for all rendered React components
-  const css = new Set();
-  const insertCss = (...styles: any) => styles.forEach((style: any) => css.add(style._getCss()));
+  try {
+    // CSS for all rendered React components
+    const css = new Set();
+    const insertCss = (...styles: any) => styles.forEach((style: any) => css.add(style._getCss()));
 
-  const routeComponent = await router.resolve({
-    pathname: req.path,
-  });
+    const { component: route } = await router.resolve({
+      pathname: req.path,
+    });
 
-  const data: IHtmlProps = {
-    children: ReactDOM.renderToString(React.createElement(App, { store, insertCss }, routeComponent)),
-    state: store.getState(),
-    style: [...css].join(''),
-  };
+    const data: IHtmlProps = {
+      children: ReactDOM.renderToString(React.createElement(App, { store, insertCss }, route.component)),
+      state: store.getState(),
+      style: [...css].join(''),
+    };
 
-  const html = ReactDOM.renderToStaticMarkup(React.createElement(Html, data));
+    const html = ReactDOM.renderToStaticMarkup(React.createElement(Html, data));
 
-  res.status(200);
-  res.send(`<!doctype html>${html}`);
+    res.status(route.status || 200);
+    res.send(`<!doctype html>${html}`);
+  } catch (error) {
+    next(error);
+  }
 }

@@ -76,8 +76,8 @@ async function start() {
   await clientPromise;
   await serverPromise;
 
-  server.use('*', (req: any, res: any, next: any) => {
-    const requestedUrl = `${req.protocol}://${req.get('Host')}:${PORT}${req.url}`;
+  server.get('*', (req: any, res: any, next: any) => {
+    const requestedUrl = `${req.protocol}://${req.hostname}:${PORT}${req.path}`;
     proxy(requestedUrl)(req, res, next);
   });
 

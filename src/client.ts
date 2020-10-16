@@ -4,6 +4,7 @@ import UniversalRouter from 'universal-router';
 import store from 'redux/store/clientStore';
 import history from 'core/history';
 import routes from 'routes';
+import RedBox from 'redbox-react';
 
 // components
 import { App } from 'components/App/App';
@@ -21,8 +22,20 @@ const insertCss = (...styles: any) => {
 const router = new UniversalRouter(routes);
 
 async function render(location: Location) {
-  const routeComponent = await router.resolve(location);
-  ReactDOM.hydrate(React.createElement(App, { store, insertCss }, routeComponent), container);
+  try {
+    const { component: route } = await router.resolve(location);
+    ReactDOM.hydrate(React.createElement(App, { store, insertCss }, route.component), container);
+  } catch (error) {
+    if (process.env.NODE_ENV === 'production') {
+      // eslint-disable-next-line no-console
+      console.error('Application Error: Please contact technical support!');
+    } else {
+      // eslint-disable-next-line no-console
+      console.error(error);
+    }
+
+    ReactDOM.hydrate(React.createElement(RedBox, { error }), container);
+  }
 }
 
 function main() {

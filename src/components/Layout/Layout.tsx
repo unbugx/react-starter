@@ -2,9 +2,6 @@ import React, { FC } from 'react';
 import useStyles from 'isomorphic-style-loader/useStyles';
 import { Layout as LayoutUI, Menu, Breadcrumb } from 'antd';
 
-// components
-import { Counter } from 'components/Counter/Counter';
-
 // types
 import { ILayoutProps } from './types';
 
@@ -34,11 +31,7 @@ export const Layout: FC<ILayoutProps> = ({ children }) => {
           <Breadcrumb.Item>App</Breadcrumb.Item>
         </Breadcrumb>
         <div className={s.siteLayoutContent}>
-          <div>
-            {children}
-          </div>
-          Content:
-          <Counter />
+          {children}
         </div>
       </Content>
       <Footer style={{ textAlign: 'center' }}>Ant Design ©2018 Created by Ant UED</Footer>
