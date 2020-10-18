@@ -1,19 +1,22 @@
 import path from 'path';
 import ESLintPlugin from 'eslint-webpack-plugin';
 import webpack from 'webpack';
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+// import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
-const nodeEnv = process.env.NODE_ENV || 'development';
-const isProduction = nodeEnv === 'production';
-const isDev = nodeEnv === 'development';
+const isDev = !process.argv.includes('--release');
 const mode = isDev ? 'development' : 'production';
 
 const plugins = [
-  new ESLintPlugin({
-    extensions: ['.ts', 'tsx'],
-  }),
-];
+  isDev
+    ? new ESLintPlugin({
+      extensions: ['.ts', 'tsx'],
+    })
+    : null,
+].filter(Boolean);
 
-const config: any = {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+const config: any = (name: 'client' | 'server') => ({
   context: path.resolve(__dirname, '../../src'),
   resolve: {
     modules: [path.resolve(__dirname, '../../src'), 'node_modules'],
@@ -33,6 +36,7 @@ const config: any = {
             include: [path.resolve(__dirname, '../../src')],
             use: [
               'isomorphic-style-loader',
+              // !isDev && name === 'client' ? MiniCssExtractPlugin.loader : null,
               {
                 loader: 'css-loader',
                 options: {
@@ -46,7 +50,7 @@ const config: any = {
                 },
               },
               'postcss-loader',
-            ],
+            ].filter(Boolean),
           },
         ],
       },
@@ -73,14 +77,14 @@ const config: any = {
     // cached: isVerbose,
     // cachedAssets: isVerbose,
   },
-};
+});
 
 const clientConfig: any = {
-  ...config,
+  ...config('client'),
   name: 'client',
-  devtool: !isProduction ? '#source-map' : false,
+  devtool: isDev ? '#source-map' : false,
   entry: {
-    client: [path.resolve(__dirname, '../../src/client.ts')],
+    client: ['@babel/polyfill', path.resolve(__dirname, '../../src/client.ts')],
   },
   output: {
     path: path.resolve(__dirname, '../../build/public'),
@@ -89,19 +93,34 @@ const clientConfig: any = {
   },
   plugins: [
     ...plugins,
-    new webpack.HotModuleReplacementPlugin(),
+    isDev
+      ? new webpack.HotModuleReplacementPlugin()
+      : null,
     new webpack.DefinePlugin({
       'process.env.BROWSER': true,
     }),
-  ],
+    // !isDev
+    //   ? new MiniCssExtractPlugin({
+    //     filename: '[name].css',
+    //   })
+    //   : null,
+    process.argv.includes('--stats')
+      ? new BundleAnalyzerPlugin({
+        analyzerMode: 'server',
+        analyzerHost: '127.0.0.1',
+        analyzerPort: 12345,
+        logLevel: 'info',
+      })
+      : null,
+  ].filter(Boolean),
 };
 
 const serverConfig = {
-  ...config,
+  ...config('server'),
   name: 'server',
-  devtool: !isProduction ? 'cheap-module-source-map' : false,
+  devtool: isDev ? 'cheap-module-source-map' : false,
   entry: {
-    server: path.resolve(__dirname, '../../src/server.ts'),
+    server: ['@babel/polyfill', path.resolve(__dirname, '../../src/server.ts')],
   },
   output: {
     path: path.resolve(__dirname, '../../build'),

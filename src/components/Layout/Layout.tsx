@@ -8,12 +8,20 @@ import { ILayoutProps } from './types';
 // styles
 import s from './Layout.css';
 import g from '../../global.css';
+// import a1 from 'antd/es/layout/style/index.css';
+// import a2 from 'antd/es/menu/style/index.css';
+// import a3 from 'antd/es/breadcrumb/style/index.css';
+// import a4 from 'antd/es/style/index.css';
 
 const { Header, Content, Footer } = LayoutUI;
 
 export const Layout: FC<ILayoutProps> = ({ children }) => {
   useStyles(s);
   useStyles(g);
+  // useStyles(a1);
+  // useStyles(a2);
+  // useStyles(a3);
+  // useStyles(a4);
 
   return (
     <LayoutUI>

@@ -9,8 +9,10 @@ import RedBox from 'redbox-react';
 // components
 import { App } from 'components/App/App';
 
-// styles
-import './global.css';
+if (process.env.NODE_ENV !== 'production') {
+  // eslint-disable-next-line no-console
+  console.log('Looks like we are in development mode!');
+}
 
 const container = document.getElementById('app');
 
@@ -21,10 +23,21 @@ const insertCss = (...styles: any) => {
 
 const router = new UniversalRouter(routes);
 
+let initialRender = true;
+
+function onRender() {
+  if (initialRender) {
+    initialRender = false;
+
+    const element = document.getElementById('css');
+    element?.parentNode?.removeChild(element);
+  }
+}
+
 async function render(location: Location) {
   try {
     const { component: route } = await router.resolve(location);
-    ReactDOM.hydrate(React.createElement(App, { store, insertCss }, route.component), container);
+    ReactDOM.hydrate(React.createElement(App, { store, insertCss }, route.component), container, onRender);
   } catch (error) {
     if (process.env.NODE_ENV === 'production') {
       // eslint-disable-next-line no-console

@@ -1,4 +1,6 @@
-module.exports = {
+/* eslint-disable global-require */
+
+module.exports = (options) => ({
   plugins: [
     require('postcss-omit-import-tilde'),
     require('postcss-import'),
@@ -7,5 +9,16 @@ module.exports = {
     require('autoprefixer'),
     require('postcss-nested'),
     require('postcss-nesting'),
-  ]
-};
+    options.webpack.mode === 'production'
+      ? require('cssnano')({
+        preset: [
+          'default',
+          {
+            discardComments: { removeAll: true },
+            svgo: false,
+          },
+        ],
+      })
+      : false,
+  ],
+});
