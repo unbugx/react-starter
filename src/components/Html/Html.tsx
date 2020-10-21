@@ -11,6 +11,7 @@ export const Html: FC<IHtmlProps> = ({
   description,
   state,
   style,
+  scripts,
 }) => (
   <html lang='en'>
     <head>
@@ -30,7 +31,7 @@ export const Html: FC<IHtmlProps> = ({
         }}
       />
       <div id='app' dangerouslySetInnerHTML={{ __html: children }} />
-      <script src='/client.bundle.js' />
+      {scripts && scripts.map((script) => <script key={script} src={script} />)}
     </body>
   </html>
 );

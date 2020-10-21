@@ -25,6 +25,7 @@
     }
   },
   "rules": {
+    "react/jsx-props-no-spreading": "off",
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"],
     "no-unused-vars": "off",

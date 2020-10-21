@@ -4,6 +4,9 @@ import { NextFunction, Request, Response } from 'express';
 import UniversalRouter from 'universal-router';
 import routes from 'routes';
 
+// @ts-ignore
+import assets from './assets'; // eslint-disable-line import/extensions,import/no-unresolved
+
 // components
 import { Html } from 'components/Html/Html';
 import { IHtmlProps } from 'components/Html/types';
@@ -30,6 +33,8 @@ export default async function handleServerRendering(req: Request, res: Response,
       children: ReactDOM.renderToString(React.createElement(App, { store, insertCss }, route.component)),
       state: store.getState(),
       style: [...css].join(''),
+      scripts: Object.keys(assets)
+        .reduce((arr, key) => arr.concat(assets[key].js), []),
     };
 
     const html = ReactDOM.renderToStaticMarkup(React.createElement(Html, data));

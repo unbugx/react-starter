@@ -1,5 +1,5 @@
-import { createBrowserHistory } from 'history/index';
+import { BrowserHistory, createBrowserHistory } from 'history/index';
 
-const history: any = process.env.BROWSER ? createBrowserHistory() : null;
+const history = process.env.BROWSER ? createBrowserHistory() : null;
 
-export default history;
+export default history as BrowserHistory;

@@ -4,4 +4,5 @@ export interface IHtmlProps {
   children: string;
   state: RootState;
   style: string;
+  scripts: string[];
 }

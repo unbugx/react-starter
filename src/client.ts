@@ -5,6 +5,7 @@ import store from 'redux/store/clientStore';
 import history from 'core/history';
 import routes from 'routes';
 import RedBox from 'redbox-react';
+import { Location } from 'history';
 
 // components
 import { App } from 'components/App/App';
@@ -57,7 +58,7 @@ function main() {
   }
 
   // Listening for the history changes to the current location
-  history.listen(render);
+  history.listen((update) => render(update.location));
 
   // Initial Rendering for the initial location
   render(history.location);

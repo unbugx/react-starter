@@ -2,6 +2,7 @@ import path from 'path';
 import ESLintPlugin from 'eslint-webpack-plugin';
 import webpack from 'webpack';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
+import AssetsPlugin from 'assets-webpack-plugin';
 // import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 const isDev = !process.argv.includes('--release');
@@ -112,7 +113,44 @@ const clientConfig: any = {
         logLevel: 'info',
       })
       : null,
+    new AssetsPlugin({
+      path: path.resolve(__dirname, '../../build'),
+      filename: 'assets.js',
+      entrypoints: true,
+      processOutput: (assets) => `module.exports = ${JSON.stringify(assets, null, 2)};`,
+    }),
   ].filter(Boolean),
+  optimization: {
+    runtimeChunk: 'single',
+    moduleIds: 'hashed',
+    splitChunks: {
+      chunks: 'all',
+      minSize: 20000,
+      maxSize: 0,
+      minChunks: 1,
+      maxAsyncRequests: 30,
+      maxInitialRequests: 30,
+      automaticNameDelimiter: '~',
+      automaticNameMaxLength: isDev ? undefined : 30,
+      enforceSizeThreshold: 50000,
+      cacheGroups: {
+        vendors: {
+          test: /[\\/]node_modules[\\/]/,
+          priority: -10,
+          chunks: 'all',
+          enforce: true,
+        },
+        common: {
+          minChunks: 2,
+          priority: -20,
+          maxInitialRequests: 70,
+          maxAsyncRequests: 70,
+          reuseExistingChunk: true,
+          chunks: 'all',
+        },
+      },
+    },
+  },
 };
 
 const serverConfig = {
@@ -137,6 +175,7 @@ const serverConfig = {
   target: 'node',
   externals: [
     'express',
+    /^\.\/assets$/,
   ],
   node: {
     console: false,
