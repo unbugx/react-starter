@@ -7,7 +7,26 @@
     "start:watch": "babel-node src/tools/start.ts --extensions \".ts,.tsx\"",
     "start:production": "node build/server.js",
     "build": "babel-node src/tools/build.ts --extensions \".ts,.tsx\" --release",
-    "bundle-report": "babel-node src/tools/build.ts --extensions \".ts,.tsx\" --release --stats"
+    "bundle-report": "babel-node src/tools/build.ts --extensions \".ts,.tsx\" --release --stats",
+    "ts-type-check": "tsc --noEmit",
+    "lint-js": "eslint --ext .ts --ext .tsx \"src/\" --quiet",
+    "lint-css": "stylelint \"src/**/*.css\"",
+    "lint": "yarn run lint-js && yarn run lint-css"
+  },
+  "husky": {
+    "hooks": {
+      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS",
+      "pre-commit": "tsc --noEmit && lint-staged",
+      "post-checkout": "yarn"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx}": [
+      "eslint --ext .ts --ext .tsx \"src/\" --quiet"
+    ],
+    "*.css": [
+      "stylelint"
+    ]
   },
   "dependencies": {
     "@reduxjs/toolkit": "1.4.0",
@@ -39,6 +58,8 @@
     "@babel/preset-env": "7.11.5",
     "@babel/preset-react": "7.10.4",
     "@babel/preset-typescript": "7.10.4",
+    "@commitlint/cli": "11.0.0",
+    "@commitlint/config-conventional": "11.0.0",
     "@types/assets-webpack-plugin": "3.9.0",
     "@types/html-webpack-plugin": "3.2.3",
     "@types/mini-css-extract-plugin": "1.0.0",
@@ -69,7 +90,9 @@
     "eslint-plugin-react-hooks": "4.1.2",
     "eslint-webpack-plugin": "2.1.0",
     "html-webpack-plugin": "4.4.1",
+    "husky": "4.3.0",
     "isomorphic-style-loader": "5.1.0",
+    "lint-staged": "10.4.2",
     "mini-css-extract-plugin": "1.0.0",
     "postcss": "7.0.32",
     "postcss-import": "12.0.1",
@@ -81,6 +104,8 @@
     "precss": "4.0.0",
     "redbox-react": "1.6.0",
     "style-loader": "1.2.1",
+    "stylelint": "13.7.2",
+    "stylelint-config-standard": "20.0.0",
     "typescript": "4.0.2",
     "webpack": "4.44.1",
     "webpack-bundle-analyzer": "3.9.0",
