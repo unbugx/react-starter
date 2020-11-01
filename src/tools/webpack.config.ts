@@ -3,7 +3,6 @@ import ESLintPlugin from 'eslint-webpack-plugin';
 import webpack from 'webpack';
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
 import AssetsPlugin from 'assets-webpack-plugin';
-// import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 
 const isDev = !process.argv.includes('--release');
 const mode = isDev ? 'development' : 'production';
@@ -16,8 +15,7 @@ const plugins = [
     : null,
 ].filter(Boolean);
 
-// eslint-disable-next-line @typescript-eslint/no-unused-vars
-const config: any = (name: 'client' | 'server') => ({
+const config: any = () => ({
   context: path.resolve(__dirname, '../../src'),
   resolve: {
     modules: [path.resolve(__dirname, '../../src'), 'node_modules'],
@@ -100,11 +98,6 @@ const clientConfig: any = {
     new webpack.DefinePlugin({
       'process.env.BROWSER': true,
     }),
-    // !isDev
-    //   ? new MiniCssExtractPlugin({
-    //     filename: '[name].css',
-    //   })
-    //   : null,
     process.argv.includes('--stats')
       ? new BundleAnalyzerPlugin({
         analyzerMode: 'server',

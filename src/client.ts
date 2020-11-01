@@ -12,7 +12,7 @@ import { App } from 'components/App/App';
 
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line no-console
-  console.log('Looks like we are in development mode!');
+  console.warn('Looks like we are in development mode!');
 }
 
 const container = document.getElementById('app');
