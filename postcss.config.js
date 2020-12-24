@@ -9,7 +9,7 @@ module.exports = (options) => ({
     require('autoprefixer'),
     require('postcss-nested'),
     require('postcss-nesting'),
-    options.webpack.mode === 'production'
+    options.mode === 'production'
       ? require('cssnano')({
         preset: [
           'default',

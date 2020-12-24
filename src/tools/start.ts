@@ -23,7 +23,7 @@ const watchOptions = {
 let server: Express;
 
 async function compilerPromise(compiler: Compiler, cb?: () => Promise<unknown>) {
-  await new Promise((resolve) => {
+  await new Promise<void>((resolve) => {
     const handleBundleComplete = async () => {
       if (cb) {
         await cb();
@@ -31,7 +31,7 @@ async function compilerPromise(compiler: Compiler, cb?: () => Promise<unknown>) 
       resolve();
     };
 
-    compiler.hooks.done.tap(compiler.name, handleBundleComplete);
+    compiler.hooks.done.tap(compiler.name || 'custom_compiler', handleBundleComplete);
   });
 }
 
@@ -55,7 +55,7 @@ async function start() {
   server.use(
     webpackDevMiddleware(clientCompiler, {
       publicPath: clientConfig.output.publicPath,
-      stats: clientConfig.stats,
+      // stats: clientConfig.stats,
     }),
   );
 
@@ -67,10 +67,12 @@ async function start() {
       return;
     }
 
-    console.log(stats.toString({
-      chunks: false,
-      colors: true,
-    }));
+    if (stats) {
+      console.log(stats.toString({
+        chunks: false,
+        colors: true,
+      }));
+    }
   });
 
   await clientPromise;
