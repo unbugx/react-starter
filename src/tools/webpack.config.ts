@@ -81,7 +81,7 @@ const config: any = () => ({
 const clientConfig: any = {
   ...config('client'),
   name: 'client',
-  devtool: isDev ? '#source-map' : false,
+  devtool: isDev ? 'source-map' : false,
   entry: {
     client: ['@babel/polyfill', path.resolve(__dirname, '../../src/client.ts')],
   },
@@ -124,7 +124,6 @@ const clientConfig: any = {
       maxAsyncRequests: 30,
       maxInitialRequests: 30,
       automaticNameDelimiter: '~',
-      automaticNameMaxLength: isDev ? undefined : 30,
       enforceSizeThreshold: 50000,
       cacheGroups: {
         vendors: {
@@ -171,10 +170,7 @@ const serverConfig = {
     /^\.\/assets$/,
   ],
   node: {
-    console: false,
     global: false,
-    process: false,
-    Buffer: false,
     __filename: false,
     __dirname: false,
   },

@@ -1,3 +1,4 @@
+/* eslint-disable no-console */
 import webpack from 'webpack';
 import webpackConfig from './webpack.config';
 
@@ -8,11 +9,12 @@ function build() {
         return reject(error);
       }
 
-      // eslint-disable-next-line no-console
-      console.log(stats.toString({
-        chunks: false,
-        colors: true,
-      }));
+      if (stats) {
+        console.log(stats.toString({
+          chunks: false,
+          colors: true,
+        }));
+      }
 
       return resolve();
     });
