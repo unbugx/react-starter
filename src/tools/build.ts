@@ -2,7 +2,7 @@ import webpack from 'webpack';
 import webpackConfig from './webpack.config';
 
 function build() {
-  return new Promise((resolve, reject) => {
+  return new Promise<void>((resolve, reject) => {
     webpack(webpackConfig).run((error, stats) => {
       if (error) {
         return reject(error);

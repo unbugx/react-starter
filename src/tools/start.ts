@@ -23,7 +23,7 @@ const watchOptions = {
 let server: Express;
 
 async function compilerPromise(compiler: Compiler, cb?: () => Promise<unknown>) {
-  await new Promise((resolve) => {
+  await new Promise<void>((resolve) => {
     const handleBundleComplete = async () => {
       if (cb) {
         await cb();
