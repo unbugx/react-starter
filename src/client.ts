@@ -6,6 +6,7 @@ import history from 'core/history';
 import routes from 'routes';
 import RedBox from 'redbox-react';
 import { Location } from 'history';
+import { getBasePath, getPath } from 'core/utils';
 
 // components
 import { App } from 'components/App/App';
@@ -22,7 +23,9 @@ const insertCss = (...styles: any) => {
   return () => removeCss.forEach((dispose: any) => dispose());
 };
 
-const router = new UniversalRouter(routes);
+const router = new UniversalRouter(routes, {
+  baseUrl: getBasePath(),
+});
 
 let initialRender = true;
 
@@ -37,7 +40,9 @@ function onRender() {
 
 async function render(location: Location) {
   try {
-    const { component: route } = await router.resolve(location);
+    const { component: route } = await router.resolve({
+      pathname: `${getBasePath()}${getPath(location.pathname)}`,
+    });
     ReactDOM.hydrate(React.createElement(App, { store, insertCss }, route.component), container, onRender);
   } catch (error) {
     if (process.env.NODE_ENV === 'production') {

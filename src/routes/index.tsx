@@ -10,7 +10,7 @@ const routes = [
 ];
 
 const rootRoute: Route = {
-  path: '/',
+  path: '',
   children: routes,
   async action(context: RouteContext) {
     // Do action when navigation starts

@@ -1,20 +1,20 @@
 /* eslint-disable no-console */
 // libs
 import path from 'path';
-import express from 'express';
+import express, { Express } from 'express';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
 import expressRequestId from 'express-request-id';
-
-// constants
-import { PORT } from 'constants/index';
+import { getBasePath } from 'core/utils';
+import 'core/env';
 
 // middleware
 import handleServerRendering from './server/middleware/handleServerRendering';
 
+const PORT = Number(process.env.APP_PORT) || 3030;
 const addRequestId = expressRequestId();
 
-const app = express();
+const app: Express = express();
 
 // for cookie parser & sessions
 const secret = 'HI&^Wugks-2';
@@ -28,7 +28,7 @@ global.navigator.userAgent = global.navigator.userAgent || 'all';
 // It's a security best practice to disable x-powered-by header
 app.disable('x-powered-by');
 
-app.use(express.static(path.join(__dirname, 'public')));
+app.use(`${getBasePath()}/assets`, express.static(path.join(__dirname, 'public'), { index: false, redirect: false }));
 app.use(cookieParser(secret));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
@@ -44,5 +44,5 @@ app.use(() => {
 });
 
 app.listen(PORT, () => {
-  console.log(`The server is running at http://localhost:${PORT}/`);
+  console.log(`The server is running at http://localhost:${PORT}${getBasePath()}`);
 });

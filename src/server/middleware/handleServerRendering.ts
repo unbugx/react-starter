@@ -3,6 +3,8 @@ import ReactDOM from 'react-dom/server';
 import { NextFunction, Request, Response } from 'express';
 import UniversalRouter from 'universal-router';
 import routes from 'routes';
+import 'core/env';
+import { getBasePath, getPath } from 'core/utils';
 
 // @ts-ignore
 import assets from './assets'; // eslint-disable-line import/extensions,import/no-unresolved
@@ -15,7 +17,9 @@ import { App } from 'components/App/App';
 // store
 import configureStore from 'redux/store/configureStore';
 
-const router = new UniversalRouter(routes);
+const router = new UniversalRouter(routes, {
+  baseUrl: getBasePath(),
+});
 
 export default async function handleServerRendering(req: Request, res: Response, next: NextFunction) {
   const store = configureStore();
@@ -26,13 +30,16 @@ export default async function handleServerRendering(req: Request, res: Response,
     const insertCss = (...styles: any) => styles.forEach((style: any) => css.add(style._getCss()));
 
     const { component: route } = await router.resolve({
-      pathname: req.path,
+      pathname: `${getBasePath()}${getPath(req.path)}`,
     });
 
     const data: IHtmlProps = {
       children: ReactDOM.renderToString(React.createElement(App, { store, insertCss }, route.component)),
       state: store.getState(),
       style: [...css].join(''),
+      env: {
+        APP_BASE_PATH: process.env.APP_BASE_PATH || '',
+      },
       scripts: Object.keys(assets)
         .reduce((arr, key) => arr.concat(assets[key].js), []),
     };

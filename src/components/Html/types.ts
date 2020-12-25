@@ -5,4 +5,5 @@ export interface IHtmlProps {
   state: RootState;
   style: string;
   scripts: string[];
+  env: EnvVariables;
 }

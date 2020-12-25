@@ -67,14 +67,7 @@ const config: any = () => ({
   mode,
   stats: {
     colors: true,
-    // reasons: isDev,
-    // hash: isVerbose,
-    // version: isVerbose,
     timings: true,
-    // chunks: isVerbose,
-    // chunkModules: isVerbose,
-    // cached: isVerbose,
-    // cachedAssets: isVerbose,
   },
 });
 
@@ -87,7 +80,7 @@ const clientConfig: any = {
   },
   output: {
     path: path.resolve(__dirname, '../../build/public'),
-    publicPath: '/',
+    publicPath: 'assets',
     filename: '[name].bundle.js',
   },
   plugins: [
@@ -119,7 +112,7 @@ const clientConfig: any = {
     splitChunks: {
       chunks: 'all',
       minSize: 20000,
-      maxSize: 150000,
+      maxSize: 400000,
       minChunks: 1,
       maxAsyncRequests: 30,
       maxInitialRequests: 30,
@@ -148,7 +141,6 @@ const clientConfig: any = {
 const serverConfig = {
   ...config('server'),
   name: 'server',
-  devtool: isDev ? 'cheap-module-source-map' : false,
   entry: {
     server: ['@babel/polyfill', path.resolve(__dirname, '../../src/server.ts')],
   },
