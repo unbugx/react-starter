@@ -1,0 +1,6 @@
+{
+  "baseUrl": "http://localhost:3052",
+  "testFiles": "**/*spec.{ts,tsx}",
+  "video": false,
+  "screenshotOnRunFailure": false
+}

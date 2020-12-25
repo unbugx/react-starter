@@ -4,7 +4,7 @@ import { Counter } from 'components/Counter/Counter';
 import { ROUTE } from 'constants/routes';
 
 export default {
-  path: '/',
+  path: '',
   action: () => ({
     name: ROUTE.HOME,
     component: (

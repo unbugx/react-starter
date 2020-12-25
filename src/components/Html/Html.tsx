@@ -12,9 +12,11 @@ export const Html: FC<IHtmlProps> = ({
   state,
   style,
   scripts,
+  env,
 }) => (
   <html lang='en'>
     <head>
+      <base href={`${env.APP_BASE_PATH}/`} />
       <meta charSet='utf-8' />
       <meta httpEquiv='x-ua-compatible' content='ie=edge' />
       <title>{title}</title>
@@ -27,6 +29,7 @@ export const Html: FC<IHtmlProps> = ({
         dangerouslySetInnerHTML={{
           __html: `
             window.APP_STATE=${serialize(state, { isJSON: true })};
+            window.APP_BASE_PATH='${env.APP_BASE_PATH}'
           `,
         }}
       />

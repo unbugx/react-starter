@@ -2,6 +2,7 @@ import React, { FC } from 'react';
 import cn from 'classnames';
 import useStyles from 'isomorphic-style-loader/useStyles';
 import history from 'core/history';
+import { getBasePath } from 'core/utils';
 
 // types
 import { ILinkProps } from './types';
@@ -27,7 +28,7 @@ export const Link: FC<ILinkProps> = ({
         onClick(event);
       }
 
-      history.push(href);
+      history.push(`${getBasePath()}${href}`);
     },
     [disabled, onClick],
   );
@@ -35,7 +36,7 @@ export const Link: FC<ILinkProps> = ({
   return (
     <a
       className={cn(className, s.link, { [s.disabled]: disabled })}
-      href={href}
+      href={`${getBasePath()}${href}`}
       onClick={handleClick}
       {...restProps}
     >

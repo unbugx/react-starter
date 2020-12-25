@@ -1,6 +1,5 @@
 /* eslint-disable no-console */
 // libs
-import path from 'path';
 import express, { Express } from 'express';
 import proxy from 'express-http-proxy';
 import webpack, { Compiler } from 'webpack';
@@ -8,12 +7,12 @@ import webpackDevMiddleware from 'webpack-dev-middleware';
 import webpackHotMiddleware from 'webpack-hot-middleware';
 import webpackConfig from './webpack.config';
 import runServer from './runServer';
+import copy from './copy';
+import clean from './clean';
+import { getBasePath } from 'core/utils';
+import 'core/env';
 
-// constants
-import { PORT } from 'constants/index';
-
-// const nodeEnv = process.env.NODE_ENV || 'development';
-// const isDev = nodeEnv === 'development';
+const PORT = Number(process.env.APP_PORT) || 3030;
 
 const watchOptions = {
   aggregateTimeout: 200,
@@ -38,11 +37,13 @@ async function compilerPromise(compiler: Compiler, cb?: () => Promise<unknown>) 
 async function start() {
   if (server) return server;
 
+  await clean();
+  await copy();
+
   server = express();
-  server.use(express.static(path.resolve(__dirname, 'public')));
 
   const clientConfig = webpackConfig.find((config) => config.name === 'client');
-  clientConfig.entry.client = ['webpack-hot-middleware/client'].concat(clientConfig.entry.client);
+  clientConfig.entry.client = ['webpack-hot-middleware/client?overlay=false'].concat(clientConfig.entry.client);
 
   const multiCompiler = webpack(webpackConfig);
 
@@ -54,8 +55,7 @@ async function start() {
 
   server.use(
     webpackDevMiddleware(clientCompiler, {
-      publicPath: clientConfig.output.publicPath,
-      // stats: clientConfig.stats,
+      publicPath: `${getBasePath()}/${clientConfig.output.publicPath}`,
     }),
   );
 
@@ -83,12 +83,17 @@ async function start() {
     proxy(requestedUrl)(req, res, next);
   });
 
+  server.post('*', (req: any, res: any, next: any) => {
+    const requestedUrl = `${req.protocol}://${req.hostname}:${PORT}${req.path}`;
+    proxy(requestedUrl)(req, res, next);
+  });
+
   server.use(() => {
     console.log('handle error here');
   });
 
   server.listen(PORT + 1, () => {
-    console.log(`The server is running at http://localhost:${PORT + 1}/`);
+    console.log(`The server is running at http://localhost:${PORT + 1}${getBasePath()}`);
   });
 }
 
