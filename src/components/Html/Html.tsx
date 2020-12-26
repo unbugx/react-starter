@@ -13,6 +13,7 @@ export const Html: FC<IHtmlProps> = ({
   style,
   scripts,
   env,
+  dehydratedState,
 }) => (
   <html lang='en'>
     <head>
@@ -30,6 +31,7 @@ export const Html: FC<IHtmlProps> = ({
           __html: `
             window.APP_STATE=${serialize(state, { isJSON: true })};
             window.APP_BASE_PATH='${env.APP_BASE_PATH}'
+            window.REACT_QUERY_STATE=${serialize(dehydratedState, { isJSON: true })};
           `,
         }}
       />

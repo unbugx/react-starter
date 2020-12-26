@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import rootReducer from 'redux/slices';
 import store from 'redux/store/clientStore';
+import { DehydratedState } from 'react-query/hydration';
 
 declare global {
   declare module '*.css' {
@@ -16,6 +17,7 @@ declare global {
 
   interface Window extends EnvVariables {
     APP_STATE: ReturnType<typeof rootReducer>,
+    REACT_QUERY_STATE: DehydratedState,
     store: typeof store,
     Cypress: unknown,
     appReady: boolean,

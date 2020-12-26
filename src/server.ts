@@ -11,6 +11,13 @@ import 'core/env';
 // middleware
 import handleServerRendering from './server/middleware/handleServerRendering';
 
+const isDev = process.env.NODE_ENV !== 'production';
+
+const devApiRouter = isDev ? require('./server/middleware/api').default : null;
+const proxyApiRouter = require('./server/middleware/proxy').default;
+
+const apiRouter = process.env.APP_API_PROXY ? proxyApiRouter : devApiRouter;
+
 const PORT = Number(process.env.APP_PORT) || 3030;
 const addRequestId = expressRequestId();
 
@@ -34,6 +41,10 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 
 app.use(addRequestId);
+
+if (apiRouter) {
+  app.use(`${getBasePath()}/api`, apiRouter);
+}
 
 // Register server-side rendering middleware
 // -----------------------------------------------------------------------------

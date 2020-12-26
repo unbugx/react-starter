@@ -7,9 +7,13 @@ import routes from 'routes';
 import RedBox from 'redbox-react';
 import { Location } from 'history';
 import { getBasePath, getPath } from 'core/utils';
+import { QueryClient } from 'react-query';
 
 // components
 import { App } from 'components/App/App';
+
+// constants
+import { QUERY_CLIENT_CONFIG } from 'constants/index';
 
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line no-console
@@ -44,12 +48,26 @@ function onRender() {
   }
 }
 
+const queryClient = new QueryClient(QUERY_CLIENT_CONFIG);
+
 async function render(location: Location) {
   try {
     const { component: route } = await router.resolve({
       pathname: `${getBasePath()}${getPath(location.pathname)}`,
     });
-    ReactDOM.hydrate(React.createElement(App, { store, insertCss }, route.component), container, onRender);
+    ReactDOM.hydrate(
+      React.createElement(
+        App, {
+          store,
+          insertCss,
+          dehydratedState: window.REACT_QUERY_STATE,
+          queryClient,
+        },
+        route.component,
+      ),
+      container,
+      onRender,
+    );
   } catch (error) {
     if (process.env.NODE_ENV === 'production') {
       // eslint-disable-next-line no-console
