@@ -25,11 +25,28 @@
     }
   },
   "rules": {
+    "camelcase": ["off"],
+    "@typescript-eslint/naming-convention": [
+      "error",
+      {
+        "selector": "property",
+        "format": ["camelCase", "snake_case", "UPPER_CASE"],
+        "filter": {
+          "regex": "^(Authorization|Cypress|__html|__filename|__dirname)$",
+          "match": false
+        }
+      }
+    ],
+    "object-curly-newline": ["off"],
+    "function-paren-newline": ["off"],
+    "implicit-arrow-linebreak": ["off"],
+    "no-console": ["error"],
+    "no-plusplus": "off",
     "react/jsx-props-no-spreading": "off",
     "no-shadow": "off",
     "@typescript-eslint/no-shadow": ["error"],
     "no-unused-vars": "off",
-    "@typescript-eslint/no-unused-vars": ["error"],
+    "@typescript-eslint/no-unused-vars": ["error", {"args": "none", "ignoreRestSiblings": true}],
     "import/order": "off",
     "react/jsx-one-expression-per-line": "off",
     "react/prop-types": "off",
@@ -48,7 +65,8 @@
       "ignorePackages",
       {
         "ts": "never",
-        "tsx": "never"
+        "tsx": "never",
+        "js": "never"
       }
     ]
   }

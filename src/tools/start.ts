@@ -93,7 +93,7 @@ async function start() {
   });
 
   server.listen(PORT + 1, () => {
-    console.log(`The server is running at http://localhost:${PORT + 1}${getBasePath()}`);
+    console.log(`The server is running at http://localhost:${PORT + 1}${getBasePath()}/`);
   });
 }
 

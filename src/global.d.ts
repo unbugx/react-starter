@@ -16,7 +16,19 @@ declare global {
 
   interface Window extends EnvVariables {
     APP_STATE: ReturnType<typeof rootReducer>,
+    store: typeof store,
+    Cypress: unknown,
+    appReady: boolean,
   }
 
   type AppDispatch = typeof store.dispatch;
+
+  interface Global {
+    window: Window,
+    process: {
+      env: EnvVariables & { BROWSER: boolean, },
+    }
+  }
+
+  declare const global: Global;
 }

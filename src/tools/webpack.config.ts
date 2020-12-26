@@ -32,7 +32,10 @@ const config: any = () => ({
           },
           {
             test: /\.css$/,
-            include: [path.resolve(__dirname, '../../src')],
+            include: [
+              path.resolve(__dirname, '../../src'),
+              path.resolve(__dirname, '../../cypress'),
+            ],
             use: [
               'isomorphic-style-loader',
               // !isDev && name === 'client' ? MiniCssExtractPlugin.loader : null,
@@ -56,7 +59,10 @@ const config: any = () => ({
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        include: [path.resolve(__dirname, '../../src')],
+        include: [
+          path.resolve(__dirname, '../../src'),
+          path.resolve(__dirname, '../../cypress'),
+        ],
         use: [
           'cache-loader',
           'babel-loader',
@@ -81,7 +87,7 @@ const clientConfig: any = {
   output: {
     path: path.resolve(__dirname, '../../build/public'),
     publicPath: 'assets',
-    filename: '[name].bundle.js',
+    filename: '[name].[hash:8].bundle.js',
   },
   plugins: [
     ...plugins,

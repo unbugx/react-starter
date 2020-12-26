@@ -16,6 +16,12 @@ if (process.env.NODE_ENV !== 'production') {
   console.warn('Looks like we are in development mode!');
 }
 
+// expose store when run in Cypress
+if (window.Cypress) {
+  window.store = store;
+  window.appReady = true;
+}
+
 const container = document.getElementById('app');
 
 const insertCss = (...styles: any) => {
