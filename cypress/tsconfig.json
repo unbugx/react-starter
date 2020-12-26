@@ -1,0 +1,14 @@
+{
+  "extends": "../tsconfig.json",
+  "include": [
+    "../src/global.d.ts",
+    "../node_modules/cypress",
+    "**/*spec.ts",
+    "**/*spec.tsx"
+  ],
+  "compilerOptions": {
+    "noEmit": false,
+    "target": "es5",
+    "types": ["cypress", "cypress-pipe"]
+  }
+}
