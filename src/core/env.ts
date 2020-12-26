@@ -4,5 +4,10 @@ import dotenv from 'dotenv';
 import dotenvExpand from 'dotenv-expand';
 
 const myEnvDefault = dotenv.parse(fs.readFileSync(path.resolve(process.cwd(), '.env.default')));
-const myEnv = dotenv.parse(fs.readFileSync(path.resolve(process.cwd(), '.env')));
+
+let myEnv = {};
+if (fs.existsSync(path.resolve(process.cwd(), '.env'))) {
+  myEnv = dotenv.parse(fs.readFileSync(path.resolve(process.cwd(), '.env')));
+}
+
 dotenvExpand({ parsed: { ...myEnvDefault, ...myEnv } });

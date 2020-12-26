@@ -1,3 +1,5 @@
+import { DehydratedState } from 'react-query/hydration';
+
 export interface IHtmlProps {
   title?: string;
   description?: string;
@@ -6,4 +8,5 @@ export interface IHtmlProps {
   style: string;
   scripts: string[];
   env: EnvVariables;
+  dehydratedState: DehydratedState;
 }
