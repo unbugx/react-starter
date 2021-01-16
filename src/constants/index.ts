@@ -8,3 +8,9 @@ export const QUERY_CLIENT_CONFIG = {
     },
   },
 };
+
+export enum ALIGN {
+  left = 'left',
+  center = 'center',
+  right = 'right',
+}

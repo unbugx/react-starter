@@ -45,6 +45,8 @@ function onRender() {
 
     const element = document.getElementById('css');
     element?.parentNode?.removeChild(element);
+    const jssStyles = document.querySelector('#jss-server-side');
+    jssStyles?.parentElement?.removeChild(jssStyles);
   }
 }
 

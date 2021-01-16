@@ -15,7 +15,7 @@ export const Layout: FC<ILayoutProps> = ({ children }) => {
 
   return (
     <div>
-      <div style={{ padding: '0 50px' }}>
+      <div>
         <Link href='/'>Home</Link><br />
         <Link href='/contacts'>Contacts</Link><br />
         <Link href='/contacts' disabled>Contacts</Link>

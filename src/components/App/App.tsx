@@ -3,9 +3,11 @@ import { Provider } from 'react-redux';
 import StyleContext from 'isomorphic-style-loader/StyleContext';
 import { QueryClientProvider } from 'react-query';
 import { Hydrate } from 'react-query/hydration';
+import { ThemeProvider } from '@material-ui/core/styles';
 
 // types
 import { IAppProps } from './types';
+import theme from '../../theme';
 
 export const App: FC<IAppProps> = ({
   store,
@@ -14,13 +16,15 @@ export const App: FC<IAppProps> = ({
   dehydratedState,
   queryClient,
 }) => (
-  <Provider store={store}>
-    <StyleContext.Provider value={{ insertCss }}>
-      <QueryClientProvider client={queryClient}>
-        <Hydrate state={dehydratedState}>
-          {children}
-        </Hydrate>
-      </QueryClientProvider>
-    </StyleContext.Provider>
-  </Provider>
+  <ThemeProvider theme={theme}>
+    <Provider store={store}>
+      <StyleContext.Provider value={{ insertCss }}>
+        <QueryClientProvider client={queryClient}>
+          <Hydrate state={dehydratedState}>
+            {children}
+          </Hydrate>
+        </QueryClientProvider>
+      </StyleContext.Provider>
+    </Provider>
+  </ThemeProvider>
 );

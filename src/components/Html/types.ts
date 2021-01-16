@@ -9,4 +9,5 @@ export interface IHtmlProps {
   scripts: string[];
   env: EnvVariables;
   dehydratedState: DehydratedState;
+  muiCss: string;
 }

@@ -68,6 +68,13 @@ const config: any = () => ({
           'babel-loader',
         ],
       },
+      {
+        test: /\.(ico|jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2)(\?.*)?$/,
+        loader: 'file-loader',
+        options: {
+          name: isDev ? '[path][name].[ext]?[hash:8]' : '[hash:8].[ext]',
+        },
+      },
     ],
   },
   mode,

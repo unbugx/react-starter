@@ -7,6 +7,7 @@ import 'core/env';
 import { getBasePath, getPath } from 'core/utils';
 import { QueryClient } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
+import { ServerStyleSheets } from '@material-ui/core/styles';
 
 // @ts-ignore
 import assets from './assets'; // eslint-disable-line import/extensions,import/no-unresolved
@@ -28,6 +29,7 @@ const router = new UniversalRouter(routes, {
 
 export default async function handleServerRendering(req: Request, res: Response, next: NextFunction) {
   const store = configureStore();
+  const sheets = new ServerStyleSheets();
 
   try {
     // CSS for all rendered React components
@@ -43,10 +45,18 @@ export default async function handleServerRendering(req: Request, res: Response,
     // await queryClient.prefetchQuery('example', getExample);
     const dehydratedState = dehydrate(queryClient);
 
-    const data: IHtmlProps = {
-      children: ReactDOM.renderToString(
+    const children = ReactDOM.renderToString(
+      sheets.collect(
         React.createElement(App, { store, insertCss, dehydratedState, queryClient }, route.component),
       ),
+    );
+
+    // Grab the CSS from the sheets.
+    const muiCss = sheets.toString();
+
+    const data: IHtmlProps = {
+      children,
+      muiCss,
       state: store.getState(),
       style: [...css].join(''),
       env: {

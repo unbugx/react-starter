@@ -12,3 +12,5 @@ export const inIframe = () => {
     return true;
   }
 };
+
+export const isEditable = () => true;
