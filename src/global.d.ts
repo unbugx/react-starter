@@ -2,6 +2,8 @@
 import rootReducer from 'redux/slices';
 import store from 'redux/store/clientStore';
 import { DehydratedState } from 'react-query/hydration';
+import { PaletteColorOptions } from '@material-ui/core';
+import { PaletteColor } from '@material-ui/core/styles/createPalette';
 
 declare global {
   declare module '*.css' {
@@ -33,4 +35,24 @@ declare global {
   }
 
   declare const global: Global;
+}
+
+declare module '@material-ui/core/styles/createBreakpoints' {
+  interface BreakpointOverrides {
+    xs: true;
+    sm: true;
+    xm: true;
+    md: true;
+    lg: true;
+    xl: true;
+  }
+}
+
+declare module '@material-ui/core/styles/createPalette' {
+  interface Palette {
+    blockBackground: PaletteColor;
+  }
+  interface PaletteOptions {
+    blockBackground?: PaletteColorOptions;
+  }
 }

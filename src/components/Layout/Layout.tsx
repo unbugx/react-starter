@@ -1,29 +1,19 @@
 import React, { FC } from 'react';
-import useStyles from 'isomorphic-style-loader/useStyles';
 
 // types
 import { ILayoutProps } from './types';
 
-// styles
-import s from './Layout.css';
-
 // components
 import { Link } from 'components/UI/Link/Link';
+import { Container } from 'components/UI/Container/Container';
 
-export const Layout: FC<ILayoutProps> = ({ children }) => {
-  useStyles(s);
-
-  return (
-    <div>
-      <div>
-        <Link href='/'>Home</Link><br />
-        <Link href='/contacts'>Contacts</Link><br />
-        <Link href='/contacts' disabled>Contacts</Link>
-        <div className={s.siteLayoutContent}>
-          {children}
-        </div>
-      </div>
-      <div style={{ textAlign: 'center' }}>©2020 Artem Sitnikov</div>
-    </div>
-  );
-};
+export const Layout: FC<ILayoutProps> = ({ children }) => (
+  <>
+    <Container>
+      <Link href='/'>Home</Link><br />
+      <Link href='/contacts'>Contacts</Link><br />
+      <Link href='/contacts' disabled>Contacts</Link>
+    </Container>
+    {children}
+  </>
+);
