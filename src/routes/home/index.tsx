@@ -13,16 +13,16 @@ export default {
         <Block
           id='1'
           type='textGrid'
-          theme='orangeTheme'
+          theme='blue'
           elements={[
             {
               id: '1',
               elements: {
                 image: {
                   value: {
-                    url: '/assets/images/690x388.jpg',
+                    url: '/assets/images/1280x1704_2.jpg',
                   },
-                  interface: {
+                  ui: {
                     align: ALIGN.left,
                     visibility: true,
                   },
@@ -31,7 +31,7 @@ export default {
                   value: {
                     content: 'Lizard 1',
                   },
-                  interface: {
+                  ui: {
                     align: ALIGN.left,
                     visibility: true,
                   },
@@ -41,7 +41,7 @@ export default {
                     content: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging '
                       + 'across all continents except Antarctica',
                   },
-                  interface: {
+                  ui: {
                     align: ALIGN.left,
                     visibility: true,
                   },
@@ -51,7 +51,7 @@ export default {
                     content: 'Primary',
                     url: 'http://ya.ru',
                   },
-                  interface: {
+                  ui: {
                     align: ALIGN.left,
                     visibility: true,
                   },
@@ -61,7 +61,7 @@ export default {
                     content: 'Secondary',
                     url: '',
                   },
-                  interface: {
+                  ui: {
                     align: ALIGN.left,
                     visibility: true,
                   },
@@ -73,9 +73,9 @@ export default {
               elements: {
                 image: {
                   value: {
-                    url: '/assets/images/690x388.jpg',
+                    url: '/assets/images/1280x1704_3.jpg',
                   },
-                  interface: {
+                  ui: {
                     align: ALIGN.left,
                     visibility: true,
                   },
@@ -84,7 +84,7 @@ export default {
                   value: {
                     content: 'Lizard 1',
                   },
-                  interface: {
+                  ui: {
                     align: ALIGN.left,
                     visibility: true,
                   },
@@ -94,7 +94,7 @@ export default {
                     content: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging '
                       + 'across all continents except Antarctica',
                   },
-                  interface: {
+                  ui: {
                     align: ALIGN.left,
                     visibility: true,
                   },
@@ -104,7 +104,7 @@ export default {
                     content: 'Primary',
                     url: 'http://ya.ru',
                   },
-                  interface: {
+                  ui: {
                     align: ALIGN.left,
                     visibility: true,
                   },
@@ -114,7 +114,7 @@ export default {
                     content: 'Secondary',
                     url: '',
                   },
-                  interface: {
+                  ui: {
                     align: ALIGN.left,
                     visibility: true,
                   },
@@ -126,9 +126,9 @@ export default {
               elements: {
                 image: {
                   value: {
-                    url: '/assets/images/690x388.jpg',
+                    url: '/assets/images/1280x1704_4.jpg',
                   },
-                  interface: {
+                  ui: {
                     align: ALIGN.left,
                     visibility: true,
                   },
@@ -137,7 +137,7 @@ export default {
                   value: {
                     content: 'Lizard 1',
                   },
-                  interface: {
+                  ui: {
                     align: ALIGN.left,
                     visibility: true,
                   },
@@ -147,7 +147,7 @@ export default {
                     content: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging '
                       + 'across all continents except Antarctica',
                   },
-                  interface: {
+                  ui: {
                     align: ALIGN.left,
                     visibility: true,
                   },
@@ -157,7 +157,7 @@ export default {
                     content: 'Primary',
                     url: 'http://ya.ru',
                   },
-                  interface: {
+                  ui: {
                     align: ALIGN.left,
                     visibility: true,
                   },
@@ -167,7 +167,7 @@ export default {
                     content: 'Secondary',
                     url: '',
                   },
-                  interface: {
+                  ui: {
                     align: ALIGN.left,
                     visibility: true,
                   },
@@ -179,9 +179,9 @@ export default {
               elements: {
                 image: {
                   value: {
-                    url: '/assets/images/690x388.jpg',
+                    url: '/assets/images/1280x1704_5.jpg',
                   },
-                  interface: {
+                  ui: {
                     align: ALIGN.left,
                     visibility: true,
                   },
@@ -190,7 +190,7 @@ export default {
                   value: {
                     content: 'Lizard 1',
                   },
-                  interface: {
+                  ui: {
                     align: ALIGN.left,
                     visibility: true,
                   },
@@ -200,7 +200,7 @@ export default {
                     content: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging '
                       + 'across all continents except Antarctica',
                   },
-                  interface: {
+                  ui: {
                     align: ALIGN.left,
                     visibility: true,
                   },
@@ -210,7 +210,7 @@ export default {
                     content: 'Primary',
                     url: 'http://ya.ru',
                   },
-                  interface: {
+                  ui: {
                     align: ALIGN.left,
                     visibility: true,
                   },
@@ -220,7 +220,431 @@ export default {
                     content: 'Secondary',
                     url: '',
                   },
-                  interface: {
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+              },
+            },
+            {
+              id: '5',
+              elements: {
+                image: {
+                  value: {
+                    url: '/assets/images/1280x1704_2.jpg',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                title: {
+                  value: {
+                    content: 'Lizard 1',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                text: {
+                  value: {
+                    content: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging '
+                      + 'across all continents except Antarctica',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                primary: {
+                  value: {
+                    content: 'Primary',
+                    url: 'http://ya.ru',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                secondary: {
+                  value: {
+                    content: 'Secondary',
+                    url: '',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+              },
+            },
+            {
+              id: '6',
+              elements: {
+                image: {
+                  value: {
+                    url: '/assets/images/1280x1704_3.jpg',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                title: {
+                  value: {
+                    content: 'Lizard 1',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                text: {
+                  value: {
+                    content: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging '
+                      + 'across all continents except Antarctica',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                primary: {
+                  value: {
+                    content: 'Primary',
+                    url: 'http://ya.ru',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                secondary: {
+                  value: {
+                    content: 'Secondary',
+                    url: '',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+              },
+            },
+            {
+              id: '7',
+              elements: {
+                image: {
+                  value: {
+                    url: '/assets/images/1280x1704_4.jpg',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                title: {
+                  value: {
+                    content: 'Lizard 1',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                text: {
+                  value: {
+                    content: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging '
+                      + 'across all continents except Antarctica',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                primary: {
+                  value: {
+                    content: 'Primary',
+                    url: 'http://ya.ru',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                secondary: {
+                  value: {
+                    content: 'Secondary',
+                    url: '',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+              },
+            },
+            {
+              id: '8',
+              elements: {
+                image: {
+                  value: {
+                    url: '/assets/images/1280x1704_5.jpg',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                title: {
+                  value: {
+                    content: 'Lizard 1',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                text: {
+                  value: {
+                    content: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging '
+                      + 'across all continents except Antarctica',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                primary: {
+                  value: {
+                    content: 'Primary',
+                    url: 'http://ya.ru',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                secondary: {
+                  value: {
+                    content: 'Secondary',
+                    url: '',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+              },
+            },
+            {
+              id: '9',
+              elements: {
+                image: {
+                  value: {
+                    url: '/assets/images/1280x1704_2.jpg',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                title: {
+                  value: {
+                    content: 'Lizard 1',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                text: {
+                  value: {
+                    content: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging '
+                      + 'across all continents except Antarctica',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                primary: {
+                  value: {
+                    content: 'Primary',
+                    url: 'http://ya.ru',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                secondary: {
+                  value: {
+                    content: 'Secondary',
+                    url: '',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+              },
+            },
+            {
+              id: '10',
+              elements: {
+                image: {
+                  value: {
+                    url: '/assets/images/1280x1704_3.jpg',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                title: {
+                  value: {
+                    content: 'Lizard 1',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                text: {
+                  value: {
+                    content: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging '
+                      + 'across all continents except Antarctica',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                primary: {
+                  value: {
+                    content: 'Primary',
+                    url: 'http://ya.ru',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                secondary: {
+                  value: {
+                    content: 'Secondary',
+                    url: '',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+              },
+            },
+            {
+              id: '11',
+              elements: {
+                image: {
+                  value: {
+                    url: '/assets/images/1280x1704_4.jpg',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                title: {
+                  value: {
+                    content: 'Lizard 1',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                text: {
+                  value: {
+                    content: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging '
+                      + 'across all continents except Antarctica',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                primary: {
+                  value: {
+                    content: 'Primary',
+                    url: 'http://ya.ru',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                secondary: {
+                  value: {
+                    content: 'Secondary',
+                    url: '',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+              },
+            },
+            {
+              id: '12',
+              elements: {
+                image: {
+                  value: {
+                    url: '/assets/images/1280x1704_5.jpg',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                title: {
+                  value: {
+                    content: 'Lizard 1',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                text: {
+                  value: {
+                    content: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging '
+                      + 'across all continents except Antarctica',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                primary: {
+                  value: {
+                    content: 'Primary',
+                    url: 'http://ya.ru',
+                  },
+                  ui: {
+                    align: ALIGN.left,
+                    visibility: true,
+                  },
+                },
+                secondary: {
+                  value: {
+                    content: 'Secondary',
+                    url: '',
+                  },
+                  ui: {
                     align: ALIGN.left,
                     visibility: true,
                   },
@@ -232,12 +656,13 @@ export default {
         <Block
           id='2'
           type='text'
+          theme='cactus'
           elements={{
             image: {
               value: {
-                url: '/assets/images/690x388.jpg',
+                url: '/assets/images/1280x1704_6.jpg',
               },
-              interface: {
+              ui: {
                 align: ALIGN.left,
                 visibility: true,
               },
@@ -246,8 +671,8 @@ export default {
               value: {
                 content: 'Lizard 1',
               },
-              interface: {
-                align: ALIGN.left,
+              ui: {
+                align: ALIGN.center,
                 visibility: true,
               },
             },
@@ -256,8 +681,8 @@ export default {
                 content: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging '
                   + 'across all continents except Antarctica',
               },
-              interface: {
-                align: ALIGN.left,
+              ui: {
+                align: ALIGN.center,
                 visibility: true,
               },
             },
@@ -266,8 +691,8 @@ export default {
                 content: 'Primary',
                 url: 'http://ya.ru',
               },
-              interface: {
-                align: ALIGN.left,
+              ui: {
+                align: ALIGN.center,
                 visibility: true,
               },
             },
@@ -276,8 +701,8 @@ export default {
                 content: 'Secondary',
                 url: '',
               },
-              interface: {
-                align: ALIGN.left,
+              ui: {
+                align: ALIGN.center,
                 visibility: true,
               },
             },
@@ -286,13 +711,14 @@ export default {
         <Block
           id='3'
           type='cover'
+          theme='cactus'
           isReverse={false}
           elements={{
             image: {
               value: {
-                url: '/assets/images/690x388.jpg',
+                url: '/assets/images/1280x1704.jpg',
               },
-              interface: {
+              ui: {
                 align: ALIGN.left,
                 visibility: true,
               },
@@ -302,7 +728,7 @@ export default {
                 content: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging '
                   + 'across all continents except Antarctica',
               },
-              interface: {
+              ui: {
                 align: ALIGN.left,
                 visibility: true,
               },
@@ -312,7 +738,7 @@ export default {
                 content: 'Primary',
                 url: 'http://ya.ru',
               },
-              interface: {
+              ui: {
                 align: ALIGN.left,
                 visibility: true,
               },
@@ -322,7 +748,7 @@ export default {
                 content: 'Secondary',
                 url: '',
               },
-              interface: {
+              ui: {
                 align: ALIGN.left,
                 visibility: true,
               },
@@ -336,9 +762,9 @@ export default {
           elements={{
             image: {
               value: {
-                url: '/assets/images/690x388.jpg',
+                url: '/assets/images/1280x1600.jpg',
               },
-              interface: {
+              ui: {
                 align: ALIGN.left,
                 visibility: true,
               },
@@ -346,9 +772,20 @@ export default {
             text: {
               value: {
                 content: 'Lizards are a widespread group of squamate reptiles, with over 6,000 species, ranging '
-                  + 'across all continents except Antarctica',
+                  + 'across all continents except AntarcticaLizards are a widespread group of squamate reptiles, '
+                  + 'with over 6,000 species, ranging across all continents except AntarcticaLizards are a widespread '
+                  + 'group of squamate reptiles, with over 6,000 species, ranging across all continents except'
+                  + ' AntarcticaLizards are a widespread group of squamate reptiles, with over 6,000 species, '
+                  + 'ranging across all continents except AntarcticaLizards are a widespread group of squamate '
+                  + 'reptiles, with over 6,000 species, ranging across all continents except AntarcticaLizards are'
+                  + ' a widespread group of squamate reptiles, with over 6,000 species, ranging across all continents'
+                  + ' except AntarcticaLizards are a widespread group of squamate reptiles, with over 6,000 species,'
+                  + ' ranging across all continents except AntarcticaLizards are a widespread group of squamate'
+                  + ' reptiles, with over 6,000 species, ranging across all continents except AntarcticaLizards'
+                  + ' are a widespread group of squamate reptiles, with over 6,000 species, ranging across all'
+                  + ' continents except Antarctica',
               },
-              interface: {
+              ui: {
                 align: ALIGN.left,
                 visibility: true,
               },
@@ -358,7 +795,7 @@ export default {
                 content: 'Primary',
                 url: 'http://ya.ru',
               },
-              interface: {
+              ui: {
                 align: ALIGN.left,
                 visibility: true,
               },
@@ -368,7 +805,7 @@ export default {
                 content: 'Secondary',
                 url: '',
               },
-              interface: {
+              ui: {
                 align: ALIGN.left,
                 visibility: true,
               },

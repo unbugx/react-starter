@@ -6,6 +6,7 @@ import { ITextGridProps } from './types';
 
 // components
 import { Text } from 'components/blocks/Text/Text';
+import { Container } from 'components/UI/Container/Container';
 
 // hooks
 import { useStyles } from './hooks';
@@ -16,27 +17,26 @@ export const TextGrid: FC<ITextGridProps> = ({
   const classes = useStyles();
 
   return (
-    <Grid
-      container
-      direction='row'
-      justify='space-between'
-      alignItems='flex-start'
-      spacing={4}
-    >
-      {elements.map((item) => (
-        <Grid
-          key={item.id}
-          item
-          md={elements.length <= 2 ? 6 : 4}
-          xl={3}
-          xs={12}
-          classes={{
-            root: classes.root,
-          }}
-        >
-          <Text {...item} />
-        </Grid>
-      ))}
-    </Grid>
+    <Container padding>
+      <Grid
+        container
+        direction='row'
+        alignItems='flex-start'
+        spacing={4}
+      >
+        {elements.map((item) => (
+          <Grid
+            key={item.id}
+            item
+            md={elements.length <= 2 ? 6 : 3}
+            xl={3}
+            xs={12}
+            className={classes.item}
+          >
+            <Text {...item} />
+          </Grid>
+        ))}
+      </Grid>
+    </Container>
   );
 };

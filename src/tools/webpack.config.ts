@@ -27,8 +27,8 @@ const config: any = () => ({
       {
         oneOf: [
           {
-            test: /global\.css$/,
-            use: ['isomorphic-style-loader', 'postcss-loader'],
+            test: /aos\.css$/,
+            use: ['css-loader'],
           },
           {
             test: /\.css$/,

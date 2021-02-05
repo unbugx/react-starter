@@ -1,28 +1,13 @@
-import { createMuiTheme, Theme, ThemeOptions } from '@material-ui/core/styles';
+import { createMuiTheme } from '@material-ui/core/styles';
 import createPalette from '@material-ui/core/styles/createPalette';
-import { grey } from '@material-ui/core/colors';
-
-export function createOverrides(theme: Theme): ThemeOptions['overrides'] {
-  /* eslint-disable @typescript-eslint/naming-convention */
-  return {
-    MuiButton: {
-      root: {
-        background: (props) => {
-          const { color = 'primary' } = props as { color: 'primary' | 'secondary' };
-          return theme.palette[color][theme.palette.type];
-        },
-      },
-    },
-  };
-  /* eslint-enable @typescript-eslint/naming-convention */
-}
+import { createOverrides } from 'themes/overrides';
 
 const { augmentColor } = createPalette({
   tonalOffset: 0.2,
 });
 
 // Create a theme instance.
-export const baseTheme = createMuiTheme({
+export const base = createMuiTheme({
   breakpoints: {
     values: {
       xs: 0,
@@ -34,10 +19,13 @@ export const baseTheme = createMuiTheme({
     },
   },
   palette: {
-    blockBackground: augmentColor({
-      main: grey['50'],
+    backgroundPrimary: augmentColor({
+      main: '#FFFFFf',
+    }),
+    backgroundSecondary: augmentColor({
+      main: '#FFFFFf',
     }),
   },
 });
 
-baseTheme.overrides = createOverrides(baseTheme);
+base.overrides = createOverrides(base);

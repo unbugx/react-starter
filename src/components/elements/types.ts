@@ -2,7 +2,7 @@ import { ALIGN } from 'constants/index';
 
 export interface IElement {
   value: TElementValue,
-  interface: IElementInterface,
+  ui: IElementUI,
 }
 
 export interface IElementText extends IElement {
@@ -32,7 +32,7 @@ export interface IElementImageValue {
 
 export type TElementValue = IElementTextValue | IElementButtonValue | IElementImageValue;
 
-export interface IElementInterface {
+export interface IElementUI {
   align: ALIGN,
   visibility: boolean,
 }

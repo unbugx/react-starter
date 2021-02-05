@@ -7,10 +7,11 @@ import { ITextElementProps } from './types';
 export const TextElement: FC<ITextElementProps> = ({
   element: {
     value,
+    ui,
   },
   ...typographyProps
 }) => (
-  <Typography {...typographyProps}>
+  <Typography {...typographyProps} align={ui.align || 'left'}>
     {value.content}
   </Typography>
 );

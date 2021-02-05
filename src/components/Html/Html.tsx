@@ -15,6 +15,7 @@ export const Html: FC<IHtmlProps> = ({
   env,
   dehydratedState,
   muiCss,
+  aosCss,
 }) => (
   <html lang='en'>
     <head>
@@ -27,6 +28,7 @@ export const Html: FC<IHtmlProps> = ({
       <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap' />
       {style && <style id='css'>{style}</style>}
       <style id='jss-server-side'>{muiCss}</style>
+      <style dangerouslySetInnerHTML={{ __html: aosCss }} />
     </head>
     <body>
       <script

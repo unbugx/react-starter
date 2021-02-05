@@ -50,9 +50,11 @@ declare module '@material-ui/core/styles/createBreakpoints' {
 
 declare module '@material-ui/core/styles/createPalette' {
   interface Palette {
-    blockBackground: PaletteColor;
+    backgroundPrimary: PaletteColor;
+    backgroundSecondary: PaletteColor;
   }
   interface PaletteOptions {
-    blockBackground?: PaletteColorOptions;
+    backgroundPrimary?: PaletteColorOptions;
+    backgroundSecondary?: PaletteColorOptions;
   }
 }

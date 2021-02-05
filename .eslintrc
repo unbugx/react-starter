@@ -32,7 +32,7 @@
         "selector": "property",
         "format": ["camelCase", "snake_case", "UPPER_CASE"],
         "filter": {
-          "regex": "^(Authorization|Cypress|__html|__filename|__dirname)$",
+          "regex": "^(Authorization|Cypress|__html|__filename|__dirname|Mui.*)$",
           "match": false
         }
       }
