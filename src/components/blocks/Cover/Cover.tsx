@@ -33,10 +33,10 @@ export const Cover: FC<ICoverProps> = ({
           <ImageElement element={image} className={classes.image} />
         </Grid>
         <Grid item md={6} xs={12} data-aos={isReverse ? 'fade-right' : 'fade-left'}>
-          <CardContent className={classes.content}>
+          <CardContent className={classes.text}>
             <TextElement element={text} variant='body1' component='p' color='textSecondary' />
           </CardContent>
-          <CardActions className={classes.content}>
+          <CardActions className={classes.actions}>
             <ButtonElement element={primary} variant='contained' size='large' color='primary' disableElevation />
             <ButtonElement element={secondary} variant='contained' size='large' color='secondary' disableElevation />
           </CardActions>

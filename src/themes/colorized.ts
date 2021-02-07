@@ -1,47 +1,49 @@
 import { createMuiTheme, Theme } from '@material-ui/core/styles';
-import { base } from 'themes/base';
 import createPalette from '@material-ui/core/styles/createPalette';
-
-interface IColorSet {
-  primary: string,
-  secondary: string,
-  primaryContrastText?: string,
-  secondaryContrastText: string,
-  backgroundPrimary: string,
-  backgroundSecondary: string,
-  textPrimary: string,
-  textSecondary?: string,
-}
+import { palettes } from 'themes/palettes';
+import { createOverrides } from 'themes/overrides';
 
 const { augmentColor } = createPalette({
   tonalOffset: 0.2,
 });
 
-export function createTheme(colorSet: IColorSet, ...themes: Theme[]) {
-  createMuiTheme(
-    base,
-    ...themes,
+export function createTheme(mainTheme: Theme, paletteId: string, paletteVariant = 0) {
+  const palette = palettes[paletteId];
+  const [
+    backgroundPrimary,
+    backgroundSecondary,
+    primary,
+    secondary,
+    textPrimary,
+  ] = palette.colors[paletteVariant];
+
+  const theme = createMuiTheme(
+    mainTheme,
     {
       palette: {
         primary: augmentColor({
-          main: colorSet.primary,
-          contrastText: colorSet.primaryContrastText,
+          main: primary,
+          // contrastText: colorSet.primaryContrastText,
         }),
         secondary: augmentColor({
-          main: colorSet.secondary,
-          contrastText: colorSet.secondaryContrastText,
+          main: secondary,
+          // contrastText: colorSet.secondaryContrastText,
         }),
         backgroundPrimary: augmentColor({
-          main: colorSet.backgroundPrimary,
+          main: backgroundPrimary,
         }),
         backgroundSecondary: augmentColor({
-          main: colorSet.backgroundSecondary,
+          main: backgroundSecondary,
         }),
         text: {
-          primary: colorSet.textPrimary,
-          secondary: colorSet.textSecondary || colorSet.textPrimary,
+          primary: textPrimary,
+          secondary: textPrimary,
         },
       },
     },
   );
+
+  theme.overrides = createOverrides(theme);
+
+  return theme;
 }

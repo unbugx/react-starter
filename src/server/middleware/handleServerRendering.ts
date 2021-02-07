@@ -8,7 +8,6 @@ import { getBasePath, getPath } from 'core/utils';
 import { QueryClient } from 'react-query';
 import { dehydrate } from 'react-query/hydration';
 import { ServerStyleSheets } from '@material-ui/core/styles';
-import aosStyles from 'aos/dist/aos.css';
 
 // @ts-ignore
 import assets from './assets'; // eslint-disable-line import/extensions,import/no-unresolved
@@ -59,7 +58,6 @@ export default async function handleServerRendering(req: Request, res: Response,
       muiCss,
       state: store.getState(),
       style: [...css].join(''),
-      aosCss: aosStyles.toString(),
       env: {
         APP_BASE_PATH: process.env.APP_BASE_PATH || '',
       },

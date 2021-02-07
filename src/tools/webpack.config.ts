@@ -27,7 +27,7 @@ const config: any = () => ({
       {
         oneOf: [
           {
-            test: /aos\.css$/,
+            test: /(aos|animate)\.css$/,
             use: ['css-loader'],
           },
           {

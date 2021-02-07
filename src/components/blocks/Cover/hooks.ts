@@ -20,7 +20,7 @@ export const useStyles = makeStyles((theme) => ({
     right: 0,
     bottom: 0,
   },
-  content: {
+  text: {
     paddingLeft: theme.spacing(3),
     paddingRight: theme.spacing(3),
     paddingTop: theme.spacing(3),
@@ -28,6 +28,16 @@ export const useStyles = makeStyles((theme) => ({
       paddingLeft: theme.spacing(10),
       paddingRight: theme.spacing(10),
       paddingTop: theme.spacing(10),
+    },
+  },
+  actions: {
+    paddingLeft: theme.spacing(3),
+    paddingRight: theme.spacing(3),
+    paddingBottom: theme.spacing(3),
+    [theme.breakpoints.up('md')]: {
+      paddingLeft: theme.spacing(10),
+      paddingRight: theme.spacing(10),
+      paddingBottom: theme.spacing(10),
     },
   },
 }));

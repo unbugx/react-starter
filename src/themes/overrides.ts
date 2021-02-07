@@ -6,13 +6,56 @@ type TOptions = NonNullable<ThemeOptions['overrides']>;
 export function createDefaultOverrides(theme: Theme): TOptions {
   return {
     MuiButton: {
-      root: {
-        background: (props) => {
-          const { color = 'primary' } = props as { color: 'primary' | 'secondary' };
-          return theme.palette[color][theme.palette.type];
+      containedPrimary: {
+        border: '1px solid',
+        borderColor: theme.palette.primary.main,
+        borderRadius: 21,
+        textTransform: 'capitalize',
+        '&:hover': {
+          borderColor: theme.palette.primary.dark,
+        },
+      },
+      containedSecondary: {
+        border: '1px solid',
+        borderColor: () => {
+          if (theme.palette.primary.main === theme.palette.secondary.main) {
+            return theme.palette.primary.main;
+          }
+
+          return theme.palette.secondary.main;
+        },
+        backgroundColor: () => {
+          if (theme.palette.primary.main === theme.palette.secondary.main) {
+            return 'transparent';
+          }
+
+          return theme.palette.secondary.main;
+        },
+        color: () => {
+          if (theme.palette.primary.main === theme.palette.secondary.main) {
+            return theme.palette.primary.main;
+          }
+
+          return theme.palette.secondary.contrastText;
         },
         borderRadius: 21,
         textTransform: 'capitalize',
+        '&:hover': {
+          backgroundColor: () => {
+            if (theme.palette.primary.main === theme.palette.secondary.main) {
+              return theme.palette.backgroundPrimary.light;
+            }
+
+            return theme.palette.secondary.dark;
+          },
+          borderColor: () => {
+            if (theme.palette.primary.main === theme.palette.secondary.main) {
+              return theme.palette.primary.main;
+            }
+
+            return theme.palette.secondary.dark;
+          },
+        },
       },
       containedSizeSmall: {
         padding: '4px 20px',
@@ -20,7 +63,7 @@ export function createDefaultOverrides(theme: Theme): TOptions {
     },
     MuiPaper: {
       root: {
-        backgroundColor: theme.palette.backgroundPrimary[theme.palette.type],
+        backgroundColor: theme.palette.backgroundPrimary.main,
       },
     },
     MuiCard: {

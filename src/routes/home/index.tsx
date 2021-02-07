@@ -13,7 +13,7 @@ export default {
         <Block
           id='1'
           type='textGrid'
-          theme='blue'
+          paletteVariant={1}
           elements={[
             {
               id: '1',
@@ -227,6 +227,13 @@ export default {
                 },
               },
             },
+          ]}
+        />
+        <Block
+          id='1'
+          type='textGrid'
+          paletteVariant={4}
+          elements={[
             {
               id: '5',
               elements: {
@@ -656,7 +663,7 @@ export default {
         <Block
           id='2'
           type='text'
-          theme='cactus'
+          paletteVariant={1}
           elements={{
             image: {
               value: {
@@ -711,7 +718,6 @@ export default {
         <Block
           id='3'
           type='cover'
-          theme='cactus'
           isReverse={false}
           elements={{
             image: {

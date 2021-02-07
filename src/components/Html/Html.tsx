@@ -15,7 +15,6 @@ export const Html: FC<IHtmlProps> = ({
   env,
   dehydratedState,
   muiCss,
-  aosCss,
 }) => (
   <html lang='en'>
     <head>
@@ -26,9 +25,8 @@ export const Html: FC<IHtmlProps> = ({
       <meta name='description' content={description} />
       <meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=1' />
       <link rel='stylesheet' href='https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap' />
-      {style && <style id='css'>{style}</style>}
-      <style id='jss-server-side'>{muiCss}</style>
-      <style dangerouslySetInnerHTML={{ __html: aosCss }} />
+      {style && <style id='css' dangerouslySetInnerHTML={{ __html: style }} />}
+      <style id='jss-server-side' dangerouslySetInnerHTML={{ __html: muiCss }} />
     </head>
     <body>
       <script

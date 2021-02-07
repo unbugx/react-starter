@@ -12,6 +12,7 @@ import { TextElement } from 'components/elements/TextElement/TextElement';
 import { ButtonElement } from 'components/elements/ButtonElement/ButtonElement';
 import { ImageElement } from 'components/elements/ImageElement/ImageElement';
 import { Container } from 'components/UI/Container/Container';
+import { ZoomIn } from 'components/UI/Animation/ZoomIn';
 
 export const Text: FC<ITextProps> = ({
   elements,
@@ -21,11 +22,11 @@ export const Text: FC<ITextProps> = ({
 
   return (
     <Card square elevation={0} data-aos='fade-up'>
-      <div
-        className={classes.imageWrap}
-      >
-        <ImageElement element={image} className={classes.image} />
-      </div>
+      <ZoomIn>
+        <div className={classes.imageWrap}>
+          <ImageElement element={image} className={classes.image} />
+        </div>
+      </ZoomIn>
       <CardContent className={classes.text}>
         <TextElement element={title} variant='h5' component='h2' gutterBottom />
         <TextElement element={text} variant='body1' component='p' color='textSecondary' />
