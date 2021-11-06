@@ -77,7 +77,7 @@ async function render(location: Location) {
       console.error(error);
     }
 
-    ReactDOM.hydrate(React.createElement(RedBox, { error }), container);
+    ReactDOM.hydrate(React.createElement(RedBox, { error: error as Error }), container);
   }
 }
 
