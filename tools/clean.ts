@@ -7,7 +7,7 @@ const cleanDir = (pattern: string) => new Promise<void>((resolve, reject) => {
 
 async function clean() {
   await Promise.all([
-    await cleanDir(path.resolve(__dirname, '../../build/*')),
+    await cleanDir(path.resolve(__dirname, '../build/*')),
   ])
 }
 

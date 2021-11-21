@@ -16,9 +16,9 @@ const plugins = [
 ].filter(Boolean)
 
 const config: any = () => ({
-  context: path.resolve(__dirname, '../../src'),
+  context: path.resolve(__dirname, '../src'),
   resolve: {
-    modules: [path.resolve(__dirname, '../../src'), 'node_modules'],
+    modules: [path.resolve(__dirname, '../src'), 'node_modules'],
     extensions: ['.js', '.ts', '.tsx', '.css'],
     alias: {
       react: 'preact/compat',
@@ -32,8 +32,8 @@ const config: any = () => ({
           {
             test: /\.css$/,
             include: [
-              path.resolve(__dirname, '../../src'),
-              path.resolve(__dirname, '../../cypress'),
+              path.resolve(__dirname, '../src'),
+              path.resolve(__dirname, '../cypress'),
             ],
             use: [
               // !isDev && name === 'client' ? MiniCssExtractPlugin.loader : null,
@@ -58,8 +58,8 @@ const config: any = () => ({
         test: /\.tsx?$/,
         exclude: /node_modules/,
         include: [
-          path.resolve(__dirname, '../../src'),
-          path.resolve(__dirname, '../../cypress'),
+          path.resolve(__dirname, '../src'),
+          path.resolve(__dirname, '../cypress'),
         ],
         use: [
           'cache-loader',
@@ -80,12 +80,12 @@ const clientConfig: any = {
   name: 'client',
   devtool: isDev ? 'source-map' : false,
   entry: {
-    client: ['@babel/polyfill', path.resolve(__dirname, '../../src/client.ts')],
+    client: ['@babel/polyfill', path.resolve(__dirname, '../src/client.ts')],
   },
   output: {
-    path: path.resolve(__dirname, '../../build/public'),
+    path: path.resolve(__dirname, '../build/public'),
     publicPath: 'assets',
-    filename: '[name].[hash:8].bundle.js',
+    filename: '[name].[fullhash:8].bundle.js',
   },
   plugins: [
     ...plugins,
@@ -104,7 +104,7 @@ const clientConfig: any = {
       })
       : null,
     new AssetsPlugin({
-      path: path.resolve(__dirname, '../../build'),
+      path: path.resolve(__dirname, '../build'),
       filename: 'assets.js',
       entrypoints: true,
       processOutput: (assets) => `module.exports = ${JSON.stringify(assets, null, 2)};`,
@@ -146,10 +146,10 @@ const serverConfig = {
   ...config('server'),
   name: 'server',
   entry: {
-    server: ['@babel/polyfill', path.resolve(__dirname, '../../src/server.ts')],
+    server: ['@babel/polyfill', path.resolve(__dirname, '../src/server.ts')],
   },
   output: {
-    path: path.resolve(__dirname, '../../build'),
+    path: path.resolve(__dirname, '../build'),
     publicPath: '/',
     filename: 'server.js',
     libraryTarget: 'commonjs2',

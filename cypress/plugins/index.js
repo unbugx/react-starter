@@ -1,8 +1,8 @@
-const webpackPreprocessor = require('@cypress/webpack-preprocessor');
+const webpackPreprocessor = require('@cypress/webpack-preprocessor')
 
 module.exports = (on) => {
   // eslint-disable-next-line global-require
-  const config = require('../../src/tools/webpack.config').default[0];
+  const config = require('../../tools/webpack.config').default[0]
   const options = {
     webpackOptions: {
       ...config,
@@ -13,7 +13,7 @@ module.exports = (on) => {
       plugins: [],
     },
     watchOptions: {},
-  };
+  }
 
-  on('file:preprocessor', webpackPreprocessor(options));
-};
+  on('file:preprocessor', webpackPreprocessor(options))
+}

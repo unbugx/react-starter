@@ -9,8 +9,8 @@ import webpackConfig from './webpack.config'
 import runServer from './runServer'
 import copy from './copy'
 import clean from './clean'
-import { getBasePath } from 'core/utils'
-import 'core/env'
+import { getBasePath } from '../src/core/utils'
+import '../src/core/env'
 
 const PORT = Number(process.env.APP_PORT) || 3030
 
