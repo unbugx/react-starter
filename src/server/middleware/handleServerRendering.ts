@@ -1,5 +1,5 @@
 import React from 'react';
-import ReactDOM from 'react-dom/server';
+import * as ReactDOM from 'react-dom/server';
 import { NextFunction, Request, Response } from 'express';
 import UniversalRouter from 'universal-router';
 import routes from 'routes';

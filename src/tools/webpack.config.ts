@@ -20,7 +20,10 @@ const config: any = () => ({
   resolve: {
     modules: [path.resolve(__dirname, '../../src'), 'node_modules'],
     extensions: ['.js', '.ts', '.tsx', '.css'],
-    alias: {},
+    alias: {
+      react: 'preact/compat',
+      'react-dom': 'preact/compat',
+    },
   },
   module: {
     rules: [

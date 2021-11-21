@@ -1,6 +1,5 @@
 import React, { FC } from 'react';
 import cn from 'classnames';
-import useStyles from 'isomorphic-style-loader/useStyles';
 import history from 'core/history';
 import { getBasePath } from 'core/utils';
 
@@ -18,8 +17,6 @@ export const Link: FC<ILinkProps> = ({
   children,
   ...restProps
 }) => {
-  useStyles(s);
-
   const handleClick = React.useCallback(
     (event: React.MouseEvent<HTMLElement>) => {
       event.preventDefault();
