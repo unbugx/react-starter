@@ -1,7 +1,7 @@
-import React from 'react';
-import { Layout } from 'components/Layout/Layout';
-import { Counter } from 'components/Counter/Counter';
-import { ROUTE } from 'constants/routes';
+import React from 'react'
+import { Layout } from 'components/Layout/Layout'
+import { Counter } from 'components/Counter/Counter'
+import { ROUTE } from 'constants/routes'
 
 export default {
   path: '',
@@ -16,4 +16,4 @@ export default {
       </Layout>
     ),
   }),
-};
+}

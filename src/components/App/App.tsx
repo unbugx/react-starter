@@ -1,23 +1,14 @@
-import React, { FC } from 'react';
-import { Provider } from 'react-redux';
-import { QueryClientProvider } from 'react-query';
-import { Hydrate } from 'react-query/hydration';
+import React, { FC } from 'react'
+import { Provider } from 'react-redux'
 
 // types
-import { IAppProps } from './types';
+import type { AppProps } from './types'
 
-export const App: FC<IAppProps> = ({
+export const App: FC<AppProps> = ({
   store,
-  insertCss,
   children,
-  dehydratedState,
-  queryClient,
 }) => (
   <Provider store={store}>
-    <QueryClientProvider client={queryClient}>
-      <Hydrate state={dehydratedState}>
-        {children}
-      </Hydrate>
-    </QueryClientProvider>
+    {children}
   </Provider>
-);
+)

@@ -25,6 +25,7 @@
     }
   },
   "rules": {
+    "semi": ["error", "never"],
     "camelcase": ["off"],
     "@typescript-eslint/naming-convention": [
       "error",

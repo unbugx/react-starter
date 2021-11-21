@@ -1,5 +1,5 @@
-import configureAppStore from 'redux/store/configureStore';
+import configureAppStore from 'redux/store/configureStore'
 
-const store = configureAppStore(window.APP_STATE);
+const store = configureAppStore(window.APP_STATE)
 
-export default store;
+export default store

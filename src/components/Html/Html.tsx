@@ -1,11 +1,11 @@
 /* eslint-disable react/no-danger */
-import React, { FC } from 'react';
-import serialize from 'serialize-javascript';
+import React, { FC } from 'react'
+import serialize from 'serialize-javascript'
 
 // types
-import { IHtmlProps } from './types';
+import type { HtmlProps } from './types'
 
-export const Html: FC<IHtmlProps> = ({
+export const Html: FC<HtmlProps> = ({
   children,
   title,
   description,
@@ -13,7 +13,6 @@ export const Html: FC<IHtmlProps> = ({
   style,
   scripts,
   env,
-  dehydratedState,
 }) => (
   <html lang='en'>
     <head>
@@ -31,7 +30,6 @@ export const Html: FC<IHtmlProps> = ({
           __html: `
             window.APP_STATE=${serialize(state, { isJSON: true })};
             window.APP_BASE_PATH='${env.APP_BASE_PATH}'
-            window.REACT_QUERY_STATE=${serialize(dehydratedState, { isJSON: true })};
           `,
         }}
       />
@@ -39,4 +37,4 @@ export const Html: FC<IHtmlProps> = ({
       {scripts && scripts.map((script) => <script key={script} src={script} />)}
     </body>
   </html>
-);
+)

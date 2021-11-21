@@ -1,3 +1,3 @@
-export interface ICounterProps {
+export type CounterProps = {
 
 }

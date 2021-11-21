@@ -1,17 +1,17 @@
-import React, { FC } from 'react';
-
-// types
-import { ILayoutProps } from './types';
+import React, { FC } from 'react'
 
 // styles
-import s from './Layout.css';
+import s from './Layout.css'
 
 // components
-import { Link } from 'components/UI/Link/Link';
+import { Link } from 'components/UI/Link/Link'
 
-export const Layout: FC<ILayoutProps> = ({ children }) => (
+// types
+import type { LayoutProps } from './types'
+
+export const Layout: FC<LayoutProps> = ({ children }) => (
   <div>
-    <div style={{ padding: '0 50px' }}>
+    <div>
       <Link href='/'>Home</Link><br />
       <Link href='/contacts'>Contacts</Link><br />
       <Link href='/contacts' disabled>Contacts</Link>
@@ -19,6 +19,6 @@ export const Layout: FC<ILayoutProps> = ({ children }) => (
         {children}
       </div>
     </div>
-    <div style={{ textAlign: 'center' }}>©2020 Artem Sitnikov</div>
+    <div>©2020 Artem Sitnikov</div>
   </div>
-);
+)

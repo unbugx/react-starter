@@ -1,6 +1,6 @@
-import React from 'react';
-import { Layout } from 'components/Layout/Layout';
-import { ROUTE } from 'constants/routes';
+import React from 'react'
+import { Layout } from 'components/Layout/Layout'
+import { ROUTE } from 'constants/routes'
 
 export default {
   path: '(.*)',
@@ -13,4 +13,4 @@ export default {
     ),
     status: 404,
   }),
-};
+}

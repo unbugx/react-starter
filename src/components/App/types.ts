@@ -1,11 +1,5 @@
-import { EnhancedStore } from '@reduxjs/toolkit';
-import { InsertCSS } from 'isomorphic-style-loader/StyleContext';
-import { DehydratedState } from 'react-query/hydration';
-import { QueryClient } from 'react-query';
+import { EnhancedStore } from '@reduxjs/toolkit'
 
-export interface IAppProps {
+export type AppProps = {
   store: EnhancedStore<RootState>;
-  insertCss: InsertCSS;
-  dehydratedState: DehydratedState;
-  queryClient: QueryClient;
 }

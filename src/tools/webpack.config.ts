@@ -1,11 +1,11 @@
-import path from 'path';
-import ESLintPlugin from 'eslint-webpack-plugin';
-import webpack from 'webpack';
-import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer';
-import AssetsPlugin from 'assets-webpack-plugin';
+import path from 'path'
+import ESLintPlugin from 'eslint-webpack-plugin'
+import webpack from 'webpack'
+import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
+import AssetsPlugin from 'assets-webpack-plugin'
 
-const isDev = !process.argv.includes('--release');
-const mode = isDev ? 'development' : 'production';
+const isDev = !process.argv.includes('--release')
+const mode = isDev ? 'development' : 'production'
 
 const plugins = [
   isDev
@@ -13,7 +13,7 @@ const plugins = [
       extensions: ['.ts', 'tsx'],
     })
     : null,
-].filter(Boolean);
+].filter(Boolean)
 
 const config: any = () => ({
   context: path.resolve(__dirname, '../../src'),
@@ -30,17 +30,12 @@ const config: any = () => ({
       {
         oneOf: [
           {
-            test: /global\.css$/,
-            use: ['isomorphic-style-loader', 'postcss-loader'],
-          },
-          {
             test: /\.css$/,
             include: [
               path.resolve(__dirname, '../../src'),
               path.resolve(__dirname, '../../cypress'),
             ],
             use: [
-              'isomorphic-style-loader',
               // !isDev && name === 'client' ? MiniCssExtractPlugin.loader : null,
               {
                 loader: 'css-loader',
@@ -78,7 +73,7 @@ const config: any = () => ({
     colors: true,
     timings: true,
   },
-});
+})
 
 const clientConfig: any = {
   ...config('client'),
@@ -145,7 +140,7 @@ const clientConfig: any = {
       },
     },
   },
-};
+}
 
 const serverConfig = {
   ...config('server'),
@@ -175,6 +170,6 @@ const serverConfig = {
     __filename: false,
     __dirname: false,
   },
-};
+}
 
-export default [clientConfig, serverConfig];
+export default [clientConfig, serverConfig]

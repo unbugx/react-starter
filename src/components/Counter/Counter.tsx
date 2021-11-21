@@ -1,15 +1,15 @@
-import React, { FC } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { FC } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
 
 // slices
-import { increase, decrease, reset } from 'redux/slices/counter';
+import { increase, decrease, reset } from 'redux/slices/counter'
 
 // types
-import { ICounterProps } from './types';
+import type { CounterProps } from './types'
 
-export const Counter: FC<ICounterProps> = () => {
-  const counter = useSelector((state: RootState) => state.counter.counter);
-  const dispatch = useDispatch();
+export const Counter: FC<CounterProps> = () => {
+  const counter = useSelector((state: RootState) => state.counter.counter)
+  const dispatch = useDispatch()
 
   return (
     <div>
@@ -20,5 +20,5 @@ export const Counter: FC<ICounterProps> = () => {
         <button type='button' onClick={() => dispatch(reset())}>reset</button>
       </div>
     </div>
-  );
-};
+  )
+}

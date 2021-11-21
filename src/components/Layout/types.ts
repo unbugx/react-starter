@@ -1,3 +1,3 @@
-export interface ILayoutProps {
+export interface LayoutProps {
 
 }

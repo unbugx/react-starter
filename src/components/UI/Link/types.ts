@@ -1,6 +1,7 @@
-import React from 'react';
+// types
+import type React from 'react'
 
-export interface ILinkProps {
+export type LinkProps = {
   href: string,
   onClick?: React.MouseEventHandler<HTMLElement>,
   className?: string,
