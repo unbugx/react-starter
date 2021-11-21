@@ -15,7 +15,7 @@
     "cypress:open": "cypress open",
     "cypress:run": "cypress run",
     "ts-type-check": "tsc --noEmit",
-    "lint-js": "eslint --ext .ts --ext .tsx \"src/\" --quiet --fix",
+    "lint-js": "eslint --ext .ts --ext .tsx \"src/\" --ext .tsx \"cypress/\" --quiet",
     "lint-css": "stylelint \"src/**/*.css\"",
     "lint": "yarn run lint-js && yarn run lint-css",
     "prepare": "husky install"
