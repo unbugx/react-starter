@@ -1,4 +1,4 @@
-import { configureStore, getDefaultMiddleware } from '@reduxjs/toolkit'
+import { configureStore } from '@reduxjs/toolkit'
 
 // slices
 import rootReducer from 'redux/slices'
@@ -6,7 +6,9 @@ import rootReducer from 'redux/slices'
 export default function configureAppStore(preloadedState = {}) {
   const store = configureStore({
     reducer: rootReducer,
-    middleware: [...getDefaultMiddleware()],
+    middleware: (getDefaultMiddleware) => [
+      ...getDefaultMiddleware(),
+    ],
     preloadedState,
   })
 
