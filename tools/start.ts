@@ -9,6 +9,8 @@ import webpackConfig from './webpack.config'
 import runServer from './runServer'
 import copy from './copy'
 import clean from './clean'
+
+// utils
 import { getBasePath } from '../src/core/utils'
 import '../src/core/env'
 

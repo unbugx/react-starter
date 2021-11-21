@@ -1,5 +1,7 @@
 import React, { FC } from 'react'
 import cn from 'classnames'
+
+// utils
 import history from 'core/history'
 import { getBasePath } from 'core/utils'
 
@@ -7,7 +9,7 @@ import { getBasePath } from 'core/utils'
 import s from './Link.css'
 
 // types
-import type { LinkProps } from './types'
+import type { LinkProps } from 'components/ui/Link/Link.types'
 
 export const Link: FC<LinkProps> = ({
   href = '',

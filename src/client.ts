@@ -1,15 +1,19 @@
 import * as React from 'react'
 import ReactDOM from 'react-dom'
 import UniversalRouter from 'universal-router'
-import store from 'redux/store/clientStore'
-import history from 'core/history'
 import routes from 'routes'
 import RedBox from 'redbox-react'
 import { Location } from 'history'
+
+// utils
+import history from 'core/history'
 import { getBasePath, getPath } from 'core/utils'
 
+// store
+import store from 'redux/store/clientStore'
+
 // components
-import { App } from 'components/App/App'
+import { App } from 'components/App'
 
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line no-console

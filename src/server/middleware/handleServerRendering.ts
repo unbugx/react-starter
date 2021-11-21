@@ -3,6 +3,8 @@ import * as ReactDOM from 'react-dom/server'
 import { NextFunction, Request, Response } from 'express'
 import UniversalRouter from 'universal-router'
 import routes from 'routes'
+
+// utils
 import 'core/env'
 import { getBasePath, getPath } from 'core/utils'
 
@@ -10,14 +12,14 @@ import { getBasePath, getPath } from 'core/utils'
 import assets from './assets' // eslint-disable-line import/extensions,import/no-unresolved
 
 // components
-import { Html } from 'components/Html/Html'
-import { App } from 'components/App/App'
+import { Html } from 'components/Html'
+import { App } from 'components/App'
 
 // store
 import configureStore from 'redux/store/configureStore'
 
 // types
-import type { HtmlProps } from 'components/Html/types'
+import type { HtmlProps } from 'components/Html/Html.types'
 
 const router = new UniversalRouter(routes, {
   baseUrl: getBasePath(),

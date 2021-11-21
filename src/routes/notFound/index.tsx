@@ -1,5 +1,9 @@
 import React from 'react'
-import { Layout } from 'components/Layout/Layout'
+
+// components
+import { Layout } from 'components/Layout'
+
+// constants
 import { ROUTE } from 'constants/routes'
 
 export default {

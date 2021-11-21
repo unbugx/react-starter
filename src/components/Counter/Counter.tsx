@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from 'react-redux'
 import { increase, decrease, reset } from 'redux/slices/counter'
 
 // types
-import type { CounterProps } from './types'
+import type { CounterProps } from 'components/Counter/Counter.types'
 
 export const Counter: FC<CounterProps> = () => {
   const counter = useSelector((state: RootState) => state.counter.counter)

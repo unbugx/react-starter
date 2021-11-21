@@ -1,4 +1,6 @@
 import axios, { AxiosRequestConfig } from 'axios'
+
+// utils
 import { getBasePath } from 'core/utils'
 
 const options: AxiosRequestConfig = {

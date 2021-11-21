@@ -4,10 +4,10 @@ import React, { FC } from 'react'
 import s from './Layout.css'
 
 // components
-import { Link } from 'components/UI/Link/Link'
+import { Link } from 'components/ui/Link'
 
 // types
-import type { LayoutProps } from './types'
+import type { LayoutProps } from 'components/Layout/Layout.types'
 
 export const Layout: FC<LayoutProps> = ({ children }) => (
   <div>

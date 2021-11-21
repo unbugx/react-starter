@@ -1,6 +1,10 @@
 import React from 'react'
-import { Layout } from 'components/Layout/Layout'
-import { Counter } from 'components/Counter/Counter'
+
+// components
+import { Layout } from 'components/Layout'
+import { Counter } from 'components/Counter'
+
+// constants
 import { ROUTE } from 'constants/routes'
 
 export default {
