@@ -7,7 +7,7 @@ import { Location } from 'history'
 
 // utils
 import history from 'utils/history'
-import { getBasePath, getPath } from 'utils/utils'
+import { getBasePath, getPath } from 'utils/core'
 
 // store
 import store from 'redux/store/clientStore'

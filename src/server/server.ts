@@ -7,7 +7,7 @@ import bodyParser from 'body-parser'
 import expressRequestId from 'express-request-id'
 
 // utils
-import { getBasePath } from 'utils/utils'
+import { getBasePath } from 'utils/core'
 import 'server/helpers/env'
 
 // middleware

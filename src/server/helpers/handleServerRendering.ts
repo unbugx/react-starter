@@ -6,7 +6,7 @@ import routes from 'routes'
 
 // utils
 import 'server/helpers/env'
-import { getBasePath, getPath } from 'utils/utils'
+import { getBasePath, getPath } from 'utils/core'
 
 // @ts-ignore
 import assets from './assets' // eslint-disable-line import/extensions,import/no-unresolved

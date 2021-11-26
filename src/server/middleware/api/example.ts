@@ -1,7 +1,7 @@
 import express from 'express'
 
 // utils
-import { doDelay } from 'utils/utils'
+import { doDelay } from 'utils/core'
 
 const router = express.Router()
 

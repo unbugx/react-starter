@@ -3,7 +3,7 @@ import cn from 'classnames'
 
 // utils
 import history from 'utils/history'
-import { getBasePath } from 'utils/utils'
+import { getBasePath } from 'utils/core'
 
 // styles
 import s from './Link.css'

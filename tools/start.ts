@@ -11,7 +11,7 @@ import copy from './copy'
 import clean from './clean'
 
 // utils
-import { getBasePath } from '../src/utils/utils'
+import { getBasePath } from '../src/utils/core'
 import '../src/server/helpers/env'
 
 const PORT = Number(process.env.APP_PORT) || 3030
