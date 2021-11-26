@@ -2,8 +2,8 @@ import React, { FC } from 'react'
 import cn from 'classnames'
 
 // utils
-import history from 'core/history'
-import { getBasePath } from 'core/utils'
+import history from 'utils/history'
+import { getBasePath } from 'utils/utils'
 
 // styles
 import s from './Link.css'

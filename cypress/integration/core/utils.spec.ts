@@ -1,4 +1,4 @@
-import { getBasePath } from 'core/utils'
+import { getBasePath } from '../../../src/utils/utils'
 
 describe('Utils', () => {
   describe('getBasePath', () => {

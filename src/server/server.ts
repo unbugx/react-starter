@@ -7,16 +7,16 @@ import bodyParser from 'body-parser'
 import expressRequestId from 'express-request-id'
 
 // utils
-import { getBasePath } from 'core/utils'
-import 'core/env'
+import { getBasePath } from 'utils/utils'
+import 'server/helpers/env'
 
 // middleware
-import handleServerRendering from './server/middleware/handleServerRendering'
+import handleServerRendering from './helpers/handleServerRendering'
 
 const isDev = process.env.NODE_ENV !== 'production'
 
-const devApiRouter = isDev ? require('./server/middleware/api').default : null
-const proxyApiRouter = require('./server/middleware/proxy').default
+const devApiRouter = isDev ? require('./middleware/api').default : null
+const proxyApiRouter = require('./middleware/proxy').default
 
 const apiRouter = process.env.APP_API_PROXY ? proxyApiRouter : devApiRouter
 

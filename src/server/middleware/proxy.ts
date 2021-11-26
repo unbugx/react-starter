@@ -3,7 +3,7 @@ import express from 'express'
 import request from 'request'
 
 // utils
-import { getPath } from 'core/utils'
+import { getPath } from 'utils/utils'
 
 const router = express.Router()
 const proxy = process.env.APP_API_PROXY

@@ -6,8 +6,8 @@ import RedBox from 'redbox-react'
 import { Location } from 'history'
 
 // utils
-import history from 'core/history'
-import { getBasePath, getPath } from 'core/utils'
+import history from 'utils/history'
+import { getBasePath, getPath } from 'utils/utils'
 
 // store
 import store from 'redux/store/clientStore'

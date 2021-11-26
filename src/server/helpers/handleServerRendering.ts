@@ -5,8 +5,8 @@ import UniversalRouter from 'universal-router'
 import routes from 'routes'
 
 // utils
-import 'core/env'
-import { getBasePath, getPath } from 'core/utils'
+import 'server/helpers/env'
+import { getBasePath, getPath } from 'utils/utils'
 
 // @ts-ignore
 import assets from './assets' // eslint-disable-line import/extensions,import/no-unresolved

@@ -146,7 +146,7 @@ const serverConfig = {
   ...config('server'),
   name: 'server',
   entry: {
-    server: ['@babel/polyfill', path.resolve(__dirname, '../src/server.ts')],
+    server: ['@babel/polyfill', path.resolve(__dirname, '../src/server/server.ts')],
   },
   output: {
     path: path.resolve(__dirname, '../build'),

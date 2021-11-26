@@ -1,7 +1,7 @@
 import axios, { AxiosRequestConfig } from 'axios'
 
 // utils
-import { getBasePath } from 'core/utils'
+import { getBasePath } from 'utils/utils'
 
 const options: AxiosRequestConfig = {
   withCredentials: true,
