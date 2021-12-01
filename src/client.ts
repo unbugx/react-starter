@@ -10,10 +10,10 @@ import history from 'utils/history'
 import { getBasePath, getPath } from 'utils/core'
 
 // store
-import store from 'redux/store/clientStore'
+import store from 'store/clientStore'
 
 // components
-import { App } from 'components/App'
+import { App } from 'components/app/App'
 
 if (process.env.NODE_ENV !== 'production') {
   // eslint-disable-next-line no-console

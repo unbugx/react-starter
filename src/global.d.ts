@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
-import rootReducer from 'redux/slices'
-import store from 'redux/store/clientStore'
+// store
+import rootReducer from 'store/rootReducer'
+import store from 'store/clientStore'
 
 declare global {
   declare module '*.css' {
@@ -8,7 +9,7 @@ declare global {
     export default content
   }
 
-  type RootState = ReturnType<typeof rootReducer>;
+  type State = ReturnType<typeof rootReducer>;
 
   interface EnvVariables {
     APP_BASE_PATH: string,

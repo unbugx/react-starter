@@ -3,7 +3,7 @@ import React, { FC } from 'react'
 import serialize from 'serialize-javascript'
 
 // types
-import type { HtmlProps } from 'components/Html/Html.types'
+import type { HtmlProps } from 'components/app/Html/Html.types'
 
 export const Html: FC<HtmlProps> = ({
   children,

@@ -1,4 +1,4 @@
-import configureAppStore from 'redux/store/configureStore'
+import configureAppStore from 'store/configureStore'
 
 const store = configureAppStore(window.APP_STATE)
 

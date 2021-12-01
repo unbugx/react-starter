@@ -2,19 +2,19 @@ import React from 'react'
 
 // components
 import { Layout } from 'components/app/Layout'
+import { Users } from 'components/pages/Users'
 
 // constants
 import { ROUTE } from 'constants/routes'
 
 export default {
-  path: '(.*)',
+  path: '/users',
   action: () => ({
-    name: ROUTE.NOT_FOUND,
+    name: ROUTE.USERS,
     component: (
       <Layout>
-        404 Page
+        <Users />
       </Layout>
     ),
-    status: 404,
   }),
 }

@@ -1,7 +1,7 @@
 import React from 'react'
 
 // components
-import { Layout } from 'components/Layout'
+import { Layout } from 'components/app/Layout'
 
 // constants
 import { ROUTE } from 'constants/routes'

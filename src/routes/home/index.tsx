@@ -1,7 +1,7 @@
 import React from 'react'
 
 // components
-import { Layout } from 'components/Layout'
+import { Layout } from 'components/app/Layout'
 import { Counter } from 'components/Counter'
 
 // constants

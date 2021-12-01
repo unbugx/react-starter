@@ -23,7 +23,11 @@ export const Link: FC<LinkProps> = ({
     (event: React.MouseEvent<HTMLElement>) => {
       event.preventDefault()
 
-      if (!disabled && onClick) {
+      if (disabled) {
+        return
+      }
+
+      if (onClick) {
         onClick(event)
       }
 

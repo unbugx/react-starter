@@ -1,5 +1,5 @@
 import { EnhancedStore } from '@reduxjs/toolkit'
 
 export type AppProps = {
-  store: EnhancedStore<RootState>;
+  store: EnhancedStore<State>
 }

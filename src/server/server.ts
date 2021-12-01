@@ -15,7 +15,7 @@ import handleServerRendering from './helpers/handleServerRendering'
 
 const isDev = process.env.NODE_ENV !== 'production'
 
-const devApiRouter = isDev ? require('./middleware/api').default : null
+const devApiRouter = isDev ? require('server/middleware/api').default : null
 const proxyApiRouter = require('./middleware/proxy').default
 
 const apiRouter = process.env.APP_API_PROXY ? proxyApiRouter : devApiRouter

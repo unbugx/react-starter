@@ -12,14 +12,14 @@ import { getBasePath, getPath } from 'utils/core'
 import assets from './assets' // eslint-disable-line import/extensions,import/no-unresolved
 
 // components
-import { Html } from 'components/Html'
-import { App } from 'components/App'
+import { Html } from 'components/app/Html'
+import { App } from 'components/app/App'
 
 // store
-import configureStore from 'redux/store/configureStore'
+import configureStore from 'store/configureStore'
 
 // types
-import type { HtmlProps } from 'components/Html/Html.types'
+import type { HtmlProps } from 'components/app/Html/Html.types'
 
 const router = new UniversalRouter(routes, {
   baseUrl: getBasePath(),
