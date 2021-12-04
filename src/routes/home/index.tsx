@@ -5,12 +5,12 @@ import { Layout } from 'components/app/Layout'
 import { Counter } from 'components/Counter'
 
 // constants
-import { ROUTE } from 'constants/routes'
+import { routeNames, routePaths } from 'constants/routes'
 
 export default {
-  path: '',
+  path: routePaths.ROOT,
   action: () => ({
-    name: ROUTE.HOME,
+    name: routeNames.ROOT,
     component: (
       <Layout>
         Home Page

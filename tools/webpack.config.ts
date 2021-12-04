@@ -15,7 +15,11 @@ const plugins = [
     : null,
 ].filter(Boolean)
 
-const config: any = () => ({
+type Config = {
+  isClient: boolean
+}
+
+const config: any = ({ isClient }: Config) => ({
   context: path.resolve(__dirname, '../src'),
   resolve: {
     modules: [path.resolve(__dirname, '../src'), 'node_modules'],
@@ -28,31 +32,27 @@ const config: any = () => ({
   module: {
     rules: [
       {
-        oneOf: [
-          {
-            test: /\.css$/,
-            include: [
-              path.resolve(__dirname, '../src'),
-              path.resolve(__dirname, '../cypress'),
-            ],
-            use: [
-              // !isDev && name === 'client' ? MiniCssExtractPlugin.loader : null,
-              {
-                loader: 'css-loader',
-                options: {
-                  url: true,
-                  importLoaders: 2,
-                  esModule: false,
-                  modules: {
-                    mode: 'local',
-                    localIdentName: isDev ? '[name]-[local]-[hash:base64:5]' : '[hash:base64:5]',
-                  },
-                },
-              },
-              'postcss-loader',
-            ].filter(Boolean),
-          },
+        test: /\.css$/,
+        include: [
+          path.resolve(__dirname, '../src'),
+          path.resolve(__dirname, '../cypress'),
         ],
+        use: [
+          isClient ? 'style-loader' : null,
+          {
+            loader: 'css-loader',
+            options: {
+              // url: true,
+              importLoaders: 1,
+              modules: {
+                // mode: 'local',
+                localIdentName: isDev ? '[name]-[local]-[hash:base64:5]' : '[hash:base64:5]',
+                exportOnlyLocals: !isClient,
+              },
+            },
+          },
+          'postcss-loader',
+        ].filter(Boolean),
       },
       {
         test: /\.tsx?$/,
@@ -76,7 +76,7 @@ const config: any = () => ({
 })
 
 const clientConfig: any = {
-  ...config('client'),
+  ...config({ isClient: true }),
   name: 'client',
   devtool: isDev ? 'source-map' : false,
   entry: {
@@ -143,7 +143,7 @@ const clientConfig: any = {
 }
 
 const serverConfig = {
-  ...config('server'),
+  ...config({ isClient: false }),
   name: 'server',
   entry: {
     server: ['@babel/polyfill', path.resolve(__dirname, '../src/server/server.ts')],

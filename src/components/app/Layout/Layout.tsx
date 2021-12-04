@@ -16,7 +16,7 @@ export const Layout: FC<LayoutProps> = ({ children }) => (
       <Link href='/contacts'>Contacts</Link><br />
       <Link href='/contacts' disabled>Contacts</Link><br />
       <Link href='/users'>Users</Link>
-      <div className={s.siteLayoutContent}>
+      <div className={s.content}>
         {children}
       </div>
     </div>

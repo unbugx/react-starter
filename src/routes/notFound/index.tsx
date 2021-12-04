@@ -4,12 +4,12 @@ import React from 'react'
 import { Layout } from 'components/app/Layout'
 
 // constants
-import { ROUTE } from 'constants/routes'
+import { routeNames, routePaths } from 'constants/routes'
 
 export default {
-  path: '(.*)',
+  path: routePaths.NOT_FOUND,
   action: () => ({
-    name: ROUTE.NOT_FOUND,
+    name: routeNames.NOT_FOUND,
     component: (
       <Layout>
         404 Page

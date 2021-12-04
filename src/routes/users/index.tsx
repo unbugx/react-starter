@@ -5,12 +5,12 @@ import { Layout } from 'components/app/Layout'
 import { Users } from 'components/pages/Users'
 
 // constants
-import { ROUTE } from 'constants/routes'
+import { routeNames, routePaths } from 'constants/routes'
 
 export default {
-  path: '/users',
+  path: routePaths.USERS,
   action: () => ({
-    name: ROUTE.USERS,
+    name: routeNames.USERS,
     component: (
       <Layout>
         <Users />

@@ -4,12 +4,12 @@ import React from 'react'
 import { Layout } from 'components/app/Layout'
 
 // constants
-import { ROUTE } from 'constants/routes'
+import { routeNames, routePaths } from 'constants/routes'
 
 export default {
-  path: '/contacts',
+  path: routePaths.CONTACTS,
   action: () => ({
-    name: ROUTE.CONTACTS,
+    name: routeNames.CONTACTS,
     component: (
       <Layout>
         Contacts Page
