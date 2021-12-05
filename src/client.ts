@@ -48,7 +48,7 @@ async function render(location: Location) {
     const { component: route } = await router.resolve({
       pathname: `${getBasePath()}${getPath(location.pathname)}`,
     })
-    ReactDOM.hydrate(
+    ReactDOM.render(
       React.createElement(App, { store }, route.component),
       container,
       onRender,
@@ -62,7 +62,7 @@ async function render(location: Location) {
       console.error(error)
     }
 
-    ReactDOM.hydrate(React.createElement(RedBox, { error: error as Error }), container)
+    ReactDOM.render(React.createElement(RedBox, { error: error as Error }), container)
   }
 }
 

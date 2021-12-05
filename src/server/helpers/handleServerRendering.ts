@@ -46,7 +46,7 @@ export default async function handleServerRendering(req: Request, res: Response,
         .reduce((arr, key) => arr.concat(assets[key].js), []),
     }
 
-    const html = ReactDOM.renderToStaticMarkup(React.createElement(Html, data))
+    const html = ReactDOM.renderToString(React.createElement(Html, data))
 
     res.status(route.status || 200)
     res.send(`<!doctype html>${html}`)

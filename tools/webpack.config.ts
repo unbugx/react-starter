@@ -3,6 +3,7 @@ import ESLintPlugin from 'eslint-webpack-plugin'
 import webpack from 'webpack'
 import { BundleAnalyzerPlugin } from 'webpack-bundle-analyzer'
 import AssetsPlugin from 'assets-webpack-plugin'
+import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
 const isDev = !process.argv.includes('--release')
 const mode = isDev ? 'development' : 'production'
@@ -38,14 +39,15 @@ const config: any = ({ isClient }: Config) => ({
           path.resolve(__dirname, '../cypress'),
         ],
         use: [
-          isClient ? 'style-loader' : null,
+          isClient ? { loader: MiniCssExtractPlugin.loader } : null,
+          // isClient ? 'style-loader' : null,
           {
             loader: 'css-loader',
             options: {
-              // url: true,
+              /* need esModule = false for SSR  */
+              esModule: isClient,
               importLoaders: 1,
               modules: {
-                // mode: 'local',
                 localIdentName: isDev ? '[name]-[local]-[hash:base64:5]' : '[hash:base64:5]',
                 exportOnlyLocals: !isClient,
               },
@@ -84,11 +86,16 @@ const clientConfig: any = {
   },
   output: {
     path: path.resolve(__dirname, '../build/public'),
-    publicPath: 'assets',
+    publicPath: 'assets/',
     filename: '[name].[fullhash:8].bundle.js',
   },
   plugins: [
     ...plugins,
+    new MiniCssExtractPlugin({
+      filename: isDev ? '[name].css' : '[name].[contenthash:8].css',
+      chunkFilename: isDev ? '[name].chunk.css' : '[name].[contenthash:8].css',
+      ignoreOrder: true,
+    }),
     isDev
       ? new webpack.HotModuleReplacementPlugin()
       : null,

@@ -1,23 +1,15 @@
-import React from 'react'
-
-// components
-import { Layout } from 'components/app/Layout'
-import { Counter } from 'components/Counter'
-
 // constants
-import { routeNames, routePaths } from 'constants/routes'
+import { routePaths } from 'constants/routes'
+
+const action = async () =>
+  (
+    await import(
+      /* webpackChunkName: "root" */
+      './action'
+    )
+  ).action()
 
 export default {
   path: routePaths.ROOT,
-  action: () => ({
-    name: routeNames.ROOT,
-    component: (
-      <Layout>
-        Home Page
-        <div>
-          <Counter />
-        </div>
-      </Layout>
-    ),
-  }),
+  action,
 }
