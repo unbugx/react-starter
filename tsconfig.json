@@ -19,7 +19,8 @@
     "noUnusedLocals": true,
     "noEmitOnError": false,
     "noImplicitAny": true,
-    "traceResolution": false
+    "traceResolution": false,
+    "module": "esnext"
   },
   "include": [
     "./src/**/*"

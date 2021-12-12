@@ -1,15 +1,15 @@
-import React from 'react';
-import { Layout } from 'components/Layout/Layout';
-import { ROUTE } from 'constants/routes';
+// constants
+import { routePaths } from 'constants/routes'
+
+const action = async () =>
+  (
+    await import(
+      /* webpackChunkName: "contacts" */
+      './action'
+    )
+  ).action()
 
 export default {
-  path: '/contacts',
-  action: () => ({
-    name: ROUTE.CONTACTS,
-    component: (
-      <Layout>
-        Contacts Page
-      </Layout>
-    ),
-  }),
-};
+  path: routePaths.CONTACTS,
+  action,
+}

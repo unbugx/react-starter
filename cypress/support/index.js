@@ -14,10 +14,10 @@
 // ***********************************************************
 
 // Import commands.js using ES2015 syntax:
-import './commands';
+import './commands'
 
 // import 'cypress-react-unit-test/support';
-import 'cypress-pipe';
-import '@babel/polyfill';
+import 'cypress-pipe'
+import '@babel/polyfill'
 
-Cypress.Cookies.debug(true);
+Cypress.Cookies.debug(true)

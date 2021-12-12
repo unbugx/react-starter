@@ -1,8 +1,8 @@
-import express from 'express';
-import example from 'server/middleware/api/example';
+import express from 'express'
+import { v1Router } from './v1'
 
-const router = express.Router();
+const router = express.Router()
 
-router.use('/example', example);
+router.use('/v1', v1Router)
 
-export default router;
+export default router

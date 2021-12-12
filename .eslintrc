@@ -25,6 +25,7 @@
     }
   },
   "rules": {
+    "semi": ["error", "never"],
     "camelcase": ["off"],
     "@typescript-eslint/naming-convention": [
       "error",
@@ -37,6 +38,7 @@
         }
       }
     ],
+    "jsx-a11y/no-static-element-interactions": ["off"],
     "object-curly-newline": ["off"],
     "function-paren-newline": ["off"],
     "implicit-arrow-linebreak": ["off"],

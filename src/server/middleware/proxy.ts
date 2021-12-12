@@ -1,13 +1,15 @@
 /* eslint-disable no-console */
-import express from 'express';
-import request from 'request';
-import { getPath } from 'core/utils';
+import express from 'express'
+import request from 'request'
 
-const router = express.Router();
-const proxy = process.env.APP_API_PROXY;
+// utils
+import { getPath } from 'utils/core'
+
+const router = express.Router()
+const proxy = process.env.APP_API_PROXY
 
 if (proxy) {
-  console.log(`==== All requests will be redirected to ${proxy} ====`);
+  console.log(`==== All requests will be redirected to ${proxy} ====`)
 }
 
 router.use('/', (req, res) => {
@@ -24,14 +26,14 @@ router.use('/', (req, res) => {
       json: true,
     },
     (error, response, body) => {
-      console.log('==== PROXY REQUEST START ====');
-      console.log('URL: ', `'${getPath(`${proxy}${req.baseUrl}${req.url}`)}'`);
-      console.log('Error: ', error);
-      console.log('Response: ', response.headers);
-      console.log('Body: ', body);
-      console.log('==== PROXY REQUEST END ====');
+      console.log('==== PROXY REQUEST START ====')
+      console.log('URL: ', `'${getPath(`${proxy}${req.baseUrl}${req.url}`)}'`)
+      console.log('Error: ', error)
+      console.log('Response: ', response.headers)
+      console.log('Body: ', body)
+      console.log('==== PROXY REQUEST END ====')
     },
-  ).pipe(res);
-});
+  ).pipe(res)
+})
 
-export default router;
+export default router

@@ -1,16 +1,15 @@
-import React from 'react';
-import { Layout } from 'components/Layout/Layout';
-import { ROUTE } from 'constants/routes';
+// constants
+import { routePaths } from 'constants/routes'
+
+const action = async () =>
+  (
+    await import(
+      /* webpackChunkName: "not-found" */
+      './action'
+    )
+  ).action()
 
 export default {
-  path: '(.*)',
-  action: () => ({
-    name: ROUTE.NOT_FOUND,
-    component: (
-      <Layout>
-        404 Page
-      </Layout>
-    ),
-    status: 404,
-  }),
-};
+  path: routePaths.NOT_FOUND,
+  action,
+}
