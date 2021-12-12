@@ -21,6 +21,8 @@ const watchOptions = {
   poll: 1000,
 }
 
+const LAUNCH_TIMER = 'app compilation took'
+
 let server: Express
 
 async function compilerPromise(compiler: Compiler, cb?: () => Promise<unknown>) {
@@ -39,6 +41,8 @@ async function compilerPromise(compiler: Compiler, cb?: () => Promise<unknown>) 
 async function start() {
   if (server) return server
 
+  console.time(LAUNCH_TIMER)
+
   await clean()
   await copy()
 
@@ -53,11 +57,17 @@ async function start() {
   const serverCompiler = multiCompiler.compilers.find((compiler) => compiler.name === 'server') as Compiler
 
   const clientPromise = compilerPromise(clientCompiler)
-  const serverPromise = compilerPromise(serverCompiler, runServer)
+  const serverPromise = compilerPromise(serverCompiler, async () => {
+    // Needs to be sure that build/assets.js is compiled and saved
+    await clientPromise
+    await runServer()
+  })
 
   server.use(
     webpackDevMiddleware(clientCompiler, {
       publicPath: `${getBasePath()}/${clientConfig.output.publicPath}`,
+      // need save files on disk to use theme later for critical css extracting
+      writeToDisk: true,
     }),
   )
 
@@ -96,6 +106,7 @@ async function start() {
 
   server.listen(PORT + 1, () => {
     console.log(`The server is running at http://localhost:${PORT + 1}${getBasePath()}/`)
+    console.timeEnd(LAUNCH_TIMER)
   })
 }
 

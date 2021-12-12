@@ -113,7 +113,7 @@ const clientConfig: any = {
     new AssetsPlugin({
       path: path.resolve(__dirname, '../build'),
       filename: 'assets.js',
-      entrypoints: true,
+      entrypoints: false,
       processOutput: (assets) => `module.exports = ${JSON.stringify(assets, null, 2)};`,
     }),
   ].filter(Boolean),
@@ -130,6 +130,11 @@ const clientConfig: any = {
       automaticNameDelimiter: '~',
       enforceSizeThreshold: 50000,
       cacheGroups: {
+        styles: {
+          test: /\.(css)$/,
+          enforce: true,
+          chunks: 'all',
+        },
         vendors: {
           test: /[\\/]node_modules[\\/]/,
           priority: -10,
@@ -171,6 +176,8 @@ const serverConfig = {
   externals: [
     'express',
     /^\.\/assets$/,
+    'purify-css',
+    'public',
   ],
   node: {
     global: false,
