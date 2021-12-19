@@ -1,9 +1,5 @@
 module.exports = {
-  presets: [
-    '@babel/preset-react',
-    '@babel/preset-typescript',
-    '@babel/preset-env',
-  ],
+  presets: ['@babel/preset-react', '@babel/preset-typescript', '@babel/preset-env'],
   plugins: [
     [
       'module-resolver',
@@ -13,4 +9,4 @@ module.exports = {
       },
     ],
   ],
-};
+}

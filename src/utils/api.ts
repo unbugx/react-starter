@@ -5,7 +5,9 @@ import { getBasePath } from 'utils/core'
 
 const options: AxiosRequestConfig = {
   withCredentials: true,
-  baseURL: process.env.BROWSER ? getBasePath() : `http://localhost:${process.env.APP_PORT}${getBasePath()}`,
+  baseURL: process.env.BROWSER
+    ? getBasePath()
+    : `http://localhost:${process.env.APP_PORT}${getBasePath()}`,
 }
 
 export const axiosInstance = axios.create(options)
@@ -17,14 +19,17 @@ axiosInstance.interceptors.request.use(
   (error) => Promise.reject(error),
 )
 
-axiosInstance.interceptors.response.use((response) => response, (error) => {
-  if (error.response.status >= 500) {
-    // eslint-disable-next-line no-console
-    console.error(`Request to the '${error.response.config.url}' failed.`)
-  }
+axiosInstance.interceptors.response.use(
+  (response) => response,
+  (error) => {
+    if (error.response.status >= 500) {
+      // eslint-disable-next-line no-console
+      console.error(`Request to the '${error.response.config.url}' failed.`)
+    }
 
-  return Promise.reject(error)
-})
+    return Promise.reject(error)
+  },
+)
 
-export const getExample = () => axiosInstance
-  .get('/api/example/some-data').then((response) => response.data)
+export const getExample = () =>
+  axiosInstance.get('/api/example/some-data').then((response) => response.data)

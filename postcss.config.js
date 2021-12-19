@@ -1,4 +1,4 @@
-/* eslint-disable global-require */
+/* eslint-disable global-require, @typescript-eslint/no-var-requires */
 
 module.exports = (options) => ({
   plugins: [
@@ -11,14 +11,14 @@ module.exports = (options) => ({
     require('postcss-nesting'),
     options.mode === 'production'
       ? require('cssnano')({
-        preset: [
-          'default',
-          {
-            discardComments: { removeAll: true },
-            svgo: false,
-          },
-        ],
-      })
+          preset: [
+            'default',
+            {
+              discardComments: { removeAll: true },
+              svgo: false,
+            },
+          ],
+        })
       : false,
   ],
-});
+})

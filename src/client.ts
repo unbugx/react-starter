@@ -48,11 +48,7 @@ async function render(location: Location) {
     const { component: route } = await router.resolve({
       pathname: `${getBasePath()}${getPath(location.pathname)}`,
     })
-    ReactDOM.render(
-      React.createElement(App, { store }, route.component),
-      container,
-      onRender,
-    )
+    ReactDOM.render(React.createElement(App, { store }, route.component), container, onRender)
   } catch (error) {
     if (process.env.NODE_ENV === 'production') {
       // eslint-disable-next-line no-console

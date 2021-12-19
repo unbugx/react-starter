@@ -5,6 +5,6 @@ export type User = {
 }
 
 export type ApiUsersResponse = {
-  total: number,
-  result: User[],
+  total: number
+  result: User[]
 }

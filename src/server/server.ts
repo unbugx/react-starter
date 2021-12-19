@@ -15,7 +15,9 @@ import handleServerRendering from './helpers/handleServerRendering'
 
 const isDev = process.env.NODE_ENV !== 'production'
 
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const devApiRouter = isDev ? require('server/middleware/api').default : null
+// eslint-disable-next-line @typescript-eslint/no-var-requires
 const proxyApiRouter = require('./middleware/proxy').default
 
 const apiRouter = process.env.APP_API_PROXY ? proxyApiRouter : devApiRouter
@@ -31,13 +33,17 @@ const secret = 'HI&^Wugks-2'
 // Tell any CSS tooling (such as Material UI) to use all vendor prefixes if the user agent is not known.
 // -----------------------------------------------------------------------------
 global.navigator = global.navigator || {}
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 global.navigator.userAgent = global.navigator.userAgent || 'all'
 
 // It's a security best practice to disable x-powered-by header
 app.disable('x-powered-by')
 
-app.use(`${getBasePath()}/assets`, express.static(path.join(__dirname, 'public'), { index: false, redirect: false }))
+app.use(
+  `${getBasePath()}/assets`,
+  express.static(path.join(__dirname, 'public'), { index: false, redirect: false }),
+)
 app.use(cookieParser(secret))
 app.use(bodyParser.urlencoded({ extended: true }))
 app.use(bodyParser.json())

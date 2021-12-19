@@ -4,12 +4,7 @@ import contacts from './contacts'
 import users from './users'
 import notFound from './notFound'
 
-const routes = [
-  { ...home },
-  { ...contacts },
-  { ...users },
-  { ...notFound },
-]
+const routes = [{ ...home }, { ...contacts }, { ...users }, { ...notFound }]
 
 const rootRoute: Route = {
   path: '',

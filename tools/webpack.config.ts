@@ -11,8 +11,8 @@ const mode = isDev ? 'development' : 'production'
 const plugins = [
   isDev
     ? new ESLintPlugin({
-      extensions: ['.ts', 'tsx'],
-    })
+        extensions: ['.ts', 'tsx'],
+      })
     : null,
 ].filter(Boolean)
 
@@ -33,11 +33,18 @@ const config: any = ({ isClient }: Config) => ({
   module: {
     rules: [
       {
+        test: /index\.css$/,
+        include: [path.resolve(__dirname, '../src/index.css')],
+        use: [
+          isClient ? { loader: MiniCssExtractPlugin.loader } : null,
+          'css-loader',
+          'postcss-loader',
+        ].filter(Boolean),
+      },
+      {
         test: /\.css$/,
-        include: [
-          path.resolve(__dirname, '../src'),
-          path.resolve(__dirname, '../cypress'),
-        ],
+        include: [path.resolve(__dirname, '../src'), path.resolve(__dirname, '../cypress')],
+        exclude: [path.resolve(__dirname, '../src/index.css')],
         use: [
           isClient ? { loader: MiniCssExtractPlugin.loader } : null,
           // isClient ? 'style-loader' : null,
@@ -59,14 +66,8 @@ const config: any = ({ isClient }: Config) => ({
       {
         test: /\.tsx?$/,
         exclude: /node_modules/,
-        include: [
-          path.resolve(__dirname, '../src'),
-          path.resolve(__dirname, '../cypress'),
-        ],
-        use: [
-          'cache-loader',
-          'babel-loader',
-        ],
+        include: [path.resolve(__dirname, '../src'), path.resolve(__dirname, '../cypress')],
+        use: ['cache-loader', 'babel-loader'],
       },
     ],
   },
@@ -96,24 +97,22 @@ const clientConfig: any = {
       chunkFilename: isDev ? '[name].chunk.css' : '[name].[contenthash:8].css',
       ignoreOrder: true,
     }),
-    isDev
-      ? new webpack.HotModuleReplacementPlugin()
-      : null,
+    isDev ? new webpack.HotModuleReplacementPlugin() : null,
     new webpack.DefinePlugin({
       'process.env.BROWSER': true,
     }),
     process.argv.includes('--stats')
       ? new BundleAnalyzerPlugin({
-        analyzerMode: 'server',
-        analyzerHost: '127.0.0.1',
-        analyzerPort: 12345,
-        logLevel: 'info',
-      })
+          analyzerMode: 'server',
+          analyzerHost: '127.0.0.1',
+          analyzerPort: 12345,
+          logLevel: 'info',
+        })
       : null,
     new AssetsPlugin({
       path: path.resolve(__dirname, '../build'),
       filename: 'assets.js',
-      entrypoints: false,
+      entrypoints: true,
       processOutput: (assets) => `module.exports = ${JSON.stringify(assets, null, 2)};`,
     }),
   ].filter(Boolean),
@@ -173,12 +172,7 @@ const serverConfig = {
     }),
   ],
   target: 'node',
-  externals: [
-    'express',
-    /^\.\/assets$/,
-    'purify-css',
-    'public',
-  ],
+  externals: ['express', /^\.\/assets$/, 'purify-css', 'public'],
   node: {
     global: false,
     __filename: false,

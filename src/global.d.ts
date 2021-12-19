@@ -5,29 +5,29 @@ import store from 'store/clientStore'
 
 declare global {
   declare module '*.css' {
-    const content: {[className: string]: string}
+    const content: { [className: string]: string }
     export default content
   }
 
-  type State = ReturnType<typeof rootReducer>;
+  type State = ReturnType<typeof rootReducer>
 
   interface EnvVariables {
-    APP_BASE_PATH: string,
+    APP_BASE_PATH: string
   }
 
   interface Window extends EnvVariables {
-    APP_STATE: ReturnType<typeof rootReducer>,
-    store: typeof store,
-    Cypress: unknown,
-    appReady: boolean,
+    APP_STATE: ReturnType<typeof rootReducer>
+    store: typeof store
+    Cypress: unknown
+    appReady: boolean
   }
 
-  type AppDispatch = typeof store.dispatch;
+  type AppDispatch = typeof store.dispatch
 
   interface Global {
-    window: Window,
+    window: Window
     process: {
-      env: EnvVariables & { BROWSER: boolean, },
+      env: EnvVariables & { BROWSER: boolean }
     }
   }
 

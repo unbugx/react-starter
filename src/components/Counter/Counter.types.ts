@@ -1,3 +1,1 @@
-export type CounterProps = {
-
-}
+export type CounterProps = {}

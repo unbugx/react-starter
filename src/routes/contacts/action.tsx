@@ -8,9 +8,5 @@ import { routeNames } from 'constants/routes'
 
 export const action = () => ({
   name: routeNames.CONTACTS,
-  component: (
-    <Layout>
-      Contacts Page
-    </Layout>
-  ),
+  component: <Layout>Contacts Page</Layout>,
 })

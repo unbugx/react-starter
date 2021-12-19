@@ -1,6 +1,7 @@
 export const doDelay = (ms: number) => new Promise((resolve) => setTimeout(resolve, ms))
 
-export const getBasePath = () => (process.env.BROWSER ? window.APP_BASE_PATH : process.env.APP_BASE_PATH) || ''
+export const getBasePath = () =>
+  (process.env.BROWSER ? window.APP_BASE_PATH : process.env.APP_BASE_PATH) || ''
 
 // returns path relative to basePath
 export const getPath = (url: string) => url.replace(getBasePath(), '')
