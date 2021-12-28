@@ -1,8 +1,10 @@
 import React, { FC } from 'react'
-import { Provider } from 'react-redux'
 
 // styles
-import '../../../index.css'
+import 'components/ui/styles/index.css'
+
+// components
+import { Provider } from 'react-redux'
 
 // types
 import type { AppProps } from 'components/app/App/App.types'
