@@ -8,10 +8,6 @@ import { routeNames } from 'constants/routes'
 
 export const action = () => ({
   name: routeNames.NOT_FOUND,
-  component: (
-    <Layout>
-      404 Page
-    </Layout>
-  ),
+  component: <Layout>404 Page</Layout>,
   status: 404,
 })

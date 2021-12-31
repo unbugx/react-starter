@@ -2,8 +2,8 @@
 import type React from 'react'
 
 export type LinkProps = {
-  href: string,
-  onClick?: React.MouseEventHandler<HTMLElement>,
-  className?: string,
-  disabled?: boolean,
+  href: string
+  onClick?: React.MouseEventHandler<HTMLElement>
+  className?: string
+  disabled?: boolean
 }

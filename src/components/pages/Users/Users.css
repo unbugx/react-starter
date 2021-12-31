@@ -1,3 +1,5 @@
 .root {
-  color: red;
+  @media (--breakpoint-m) {
+    color: var(--c-primary-main);
+  }
 }

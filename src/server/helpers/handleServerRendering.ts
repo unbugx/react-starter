@@ -34,7 +34,11 @@ const getCriticalCss = (html: string) => {
   return stripCssComments(criticalCss, { preserve: false })
 }
 
-export default async function handleServerRendering(req: Request, res: Response, next: NextFunction) {
+export default async function handleServerRendering(
+  req: Request,
+  res: Response,
+  next: NextFunction,
+) {
   const store = configureStore()
 
   try {
@@ -43,16 +47,18 @@ export default async function handleServerRendering(req: Request, res: Response,
     })
 
     const data: HtmlProps = {
-      children: ReactDOM.renderToString(
-        React.createElement(App, { store }, route.component),
-      ),
+      children: ReactDOM.renderToString(React.createElement(App, { store }, route.component)),
       state: store.getState(),
       style: '',
       env: {
         APP_BASE_PATH: process.env.APP_BASE_PATH || '',
       },
-      // scripts: Object.keys(assets)
-      //   .reduce((arr, key) => arr.concat(assets[key].js), []),
+      css: Object.keys(assets).reduce((arr, key) => {
+        if (!['client', 'runtime', ''].includes(key)) {
+          return arr
+        }
+        return arr.concat(assets[key].css)
+      }, []),
       scripts: Object.keys(assets).reduce((arr, key) => {
         if (!['client', 'runtime', ''].includes(key)) {
           return arr
@@ -64,7 +70,9 @@ export default async function handleServerRendering(req: Request, res: Response,
     const html = ReactDOM.renderToString(React.createElement(Html, data))
     const criticalCss = getCriticalCss(html)
     res.status(route.status || 200)
-    res.send(`<!doctype html>${html.replace('</head>', `<style id="css">${criticalCss}</style></head>`)}`)
+    res.send(
+      `<!doctype html>${html.replace('</head>', `<style id="css">${criticalCss}</style></head>`)}`,
+    )
   } catch (error) {
     next(error)
   }
