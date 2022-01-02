@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import cn from 'classnames'
+import cx from 'classnames'
 
 // utils
 import history from 'utils/history'
@@ -38,9 +38,10 @@ export const Link: FC<LinkProps> = ({
 
   return (
     <a
-      className={cn(className, s.link, { [s.disabled]: disabled })}
+      className={cx(className, s.link, { [s.disabled]: disabled })}
       href={`${getBasePath()}${href}`}
       onClick={handleClick}
+      rel="noopener noreferrer"
       {...restProps}
     >
       {children}

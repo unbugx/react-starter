@@ -13,10 +13,8 @@ import type { HomeProps } from './Home.types'
 export const Home: React.FC<HomeProps> = () => {
   return (
     <>
-      Home Page
-      <div>
-        <Counter />
-      </div>
+      <div>Home Page</div>
+      <Counter />
     </>
   )
 }
