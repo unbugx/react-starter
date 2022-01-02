@@ -1,7 +1,7 @@
 {
   "extends": "../tsconfig.json",
   "include": [
-    "../src/global.d.ts",
+    "../src/types/global.d.ts",
     "../node_modules/cypress",
     "**/*spec.ts",
     "**/*spec.tsx"
